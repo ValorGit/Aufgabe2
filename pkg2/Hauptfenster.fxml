@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="861.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aufgabe.pkg2.HauptfensterController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu fx:id="DateiMenu" text="_Datei">
+            <items>
+                  <MenuItem fx:id="OpenMenuItem" text="Datenquelle _öffnen">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+                  <MenuItem fx:id="ExportMenuItem" text="Datenquelle _exportieren" />
+                  <MenuItem fx:id="prozessMenuItem" onAction="#prozessMenuItemAction" text="_Prozessvisualisierung" />
+                  <MenuItem fx:id="EinstellungenMenuItem" text="Ei_nstellungen">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="D" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+              <MenuItem fx:id="beendenMenuItem" onAction="#beendenMenuItemAction" text="_Beenden">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="W" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+            </items>
+          </Menu>
+          <Menu fx:id="KundenMenu" mnemonicParsing="true" text="_Kunden">
+            <items>
+              <MenuItem fx:id="KundenuebersichtMenuItem" mnemonicParsing="true" text="Kunden_übersicht" />
+                  <MenuItem fx:id="kundenAnlegenMenuItem" mnemonicParsing="true" onAction="#kundenAnlegenMenuItemAction" text="Kunden _anlegen" />
+                  <MenuItem fx:id="KundenVerwaltenMenuItem" mnemonicParsing="true" text="Kunden _verwalten" />
+            </items>
+          </Menu>
+          <Menu fx:id="ArtikelMenu" mnemonicParsing="true" text="_Artikel">
+            <items>
+              <MenuItem fx:id="ArtikeluebersichtMenuItem" mnemonicParsing="true" text="Artikel_übersicht" />
+                  <MenuItem fx:id="artikelAnlegenMenuItem" mnemonicParsing="true" onAction="#artikelAnlegenMenuItemAction" text="Artikel _anlegen" />
+                  <MenuItem fx:id="ArtikelVerwaltenMenuItem" mnemonicParsing="true" text="Artikel _verwalten" />
+            </items>
+          </Menu>
+            <Menu fx:id="AuftragMenu" mnemonicParsing="true" text="Auf_trag">
+              <items>
+                <MenuItem fx:id="AuftragsuebersichtMenuItem" mnemonicParsing="true" text="Auftrags_übersicht" />
+                  <MenuItem fx:id="auftragAnlegenMenuItem" mnemonicParsing="true" onAction="#auftragAnlegenMenuItemAction" text="Auftrag _anlegen" />
+                  <MenuItem fx:id="AuftragVerwaltenMenuItem" mnemonicParsing="true" text="Auftrag _verwalten" />
+              </items>
+            </Menu>
+            <Menu fx:id="InfoMenu" mnemonicParsing="true" text="_?">
+              <items>
+                <MenuItem fx:id="InfoMenuItem" mnemonicParsing="true" text="_Info" />
+                  <MenuItem fx:id="HilfeMenuItem" mnemonicParsing="true" text="_Hilfe" />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>
