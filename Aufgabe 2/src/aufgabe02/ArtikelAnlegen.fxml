@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="804.0" prefWidth="658.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aufgabe02.ArtikelAnlegenController">
+  <content>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="801.0" prefWidth="656.0">
+         <children>
+            <Label layoutX="119.0" layoutY="46.0" text="Artikel-ID" AnchorPane.leftAnchor="136.0" AnchorPane.topAnchor="50.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="artikelIdTextField" disable="true" layoutX="214.0" layoutY="43.0" AnchorPane.leftAnchor="214.0" AnchorPane.topAnchor="47.0" />
+            <Label text="Artikelnummer*" AnchorPane.leftAnchor="97.0" AnchorPane.topAnchor="90.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="artikelnummerTf" layoutX="215.0" layoutY="88.0" promptText="zzz-zzzz-zzz (z=zahl)" AnchorPane.topAnchor="87.0" />
+            <Label layoutX="110.0" layoutY="115.0" text="Bezeichnung*" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="130.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="bezeichnungTf" layoutX="215.0" layoutY="128.0" prefHeight="25.0" prefWidth="260.0" AnchorPane.topAnchor="127.0" />
+            <Label layoutX="129.0" layoutY="156.0" text="Kategorie*" AnchorPane.topAnchor="170.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="120.0" layoutY="198.0" text="Beschreibung" AnchorPane.leftAnchor="111.0" AnchorPane.topAnchor="210.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="beschreibungTextArea" layoutX="214.0" layoutY="200.0" prefHeight="170.0" prefWidth="300.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="210.0" />
+            <Label layoutX="102.0" layoutY="376.0" text="Technische Details*" AnchorPane.leftAnchor="75.0" AnchorPane.topAnchor="400.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="TdTextArea" layoutX="214.0" layoutY="400.0" prefHeight="170.0" prefWidth="300.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="400.0" />
+            <Label layoutX="14.0" layoutY="592.0" text="Preis (Einzelpreis)*" AnchorPane.topAnchor="590.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="152.0" layoutY="628.0" text="Nettopreis" AnchorPane.leftAnchor="129.0" AnchorPane.topAnchor="630.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="NettoTextfield" alignment="CENTER_RIGHT" layoutX="214.0" layoutY="628.0" prefHeight="25.0" prefWidth="85.0" AnchorPane.leftAnchor="215.0" />
+            <Label layoutX="129.0" layoutY="660.0" text="Bruttopreis" AnchorPane.leftAnchor="126.0" AnchorPane.topAnchor="670.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="BruttoTextfield" alignment="CENTER_RIGHT" editable="false" layoutX="214.0" layoutY="668.0" prefHeight="25.0" prefWidth="85.0" AnchorPane.leftAnchor="215.0" />
+            <Label layoutX="364.0" layoutY="630.0" text="Steuersatz">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="SteuersatzCb" editable="true" layoutX="444.0" layoutY="628.0" prefHeight="25.0" prefWidth="84.0" />
+            <ComboBox fx:id="KategorieCb" layoutX="214.0" layoutY="168.0" prefWidth="150.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="167.0" />
+            <Label layoutX="304.0" layoutY="630.0" text="€">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="304.0" layoutY="671.0" text="€">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="534.0" layoutY="630.0" text="\%">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="preisMeldung" layoutX="341.0" layoutY="663.0" prefHeight="59.0" prefWidth="237.0" textFill="#ee1616" wrapText="true" />
+            <Button fx:id="speichern" layoutX="386.0" layoutY="740.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Speichern" AnchorPane.leftAnchor="386.0">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button cancelButton="true" layoutX="503.0" layoutY="740.0" mnemonicParsing="false" onAction="#handleCloseButtonAction" prefHeight="30.0" prefWidth="100.0" text="Abbrechen" AnchorPane.leftAnchor="503.0">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Label layoutX="24.0" layoutY="14.0" text="Artikel anlegen" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="artikelnummerMeldung" layoutX="370.0" layoutY="88.0" prefHeight="24.0" prefWidth="247.0" textFill="#ee1616" wrapText="true">
+               <font>
+                  <Font size="10.0" />
+               </font></Label>
+            <Label fx:id="bezeichnungMeldung" layoutX="480.0" layoutY="125.0" prefHeight="30.0" prefWidth="167.0" textFill="#ee1616">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+            <Label fx:id="kategorieMeldung" layoutX="376.0" layoutY="171.0" prefHeight="17.0" prefWidth="177.0" textFill="#ee1616">
+               <font>
+                  <Font size="10.0" />
+               </font></Label>
+            <Label fx:id="TdMeldung" layoutX="520.0" layoutY="402.0" prefHeight="80.0" prefWidth="122.0" textFill="#ee1616" wrapText="true">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
+         </children></AnchorPane>
+  </content>
+</ScrollPane>
