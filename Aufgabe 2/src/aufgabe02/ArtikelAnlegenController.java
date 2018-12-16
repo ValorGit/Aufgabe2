@@ -58,6 +58,8 @@ public class ArtikelAnlegenController implements Initializable {
 
     private static final String INFORMATION_TEXT = "Bitte füllen Sie die mit * markierten Pflichtfelder aus.";
 
+    private static final String INFORMATION_TEXT_PREIS = "Der eingebene Preis liegt über den vorgebenen Preisbereich. Bitte überprüfen Sie die Eingabe";
+
     private MainApp mainApp;
 
     @FXML
@@ -101,8 +103,8 @@ public class ArtikelAnlegenController implements Initializable {
 
     @FXML
     private TextField bezeichnungTf;
-    
-     @FXML
+
+    @FXML
     private TextArea beschreibungTextArea;
 
     @FXML
@@ -117,7 +119,7 @@ public class ArtikelAnlegenController implements Initializable {
     private String artikelId = setzeArtikelId();
 
     private int aId = 0;
-    
+
     private static final String CONFIRMATION_TITLE = "Fenster schließen";
 
     private static final String CONFIRMATION_TEXT = "Sollen alle Änderungen verworfen und das Fenster geschlossen werden?";
@@ -128,11 +130,12 @@ public class ArtikelAnlegenController implements Initializable {
 
     /**
      * Weist dem Controller die Stage aus der Mainapp zu
+     *
      * @param stage legt die Stage fest
      */
     public void setStage(Stage stage) {
         this.stage = stage;
-}
+    }
 
     /**
      * Generiert eine Artikel-ID und vergibt diese beim Anlegen eines Artikels
@@ -166,6 +169,23 @@ public class ArtikelAnlegenController implements Initializable {
             }
         });
 
+//        datum.focusedProperty().addListener(new ChangeListener<Boolean>() {
+//            @Override
+//            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+//                if (!newValue) {
+//                    if (datum.getValue().isBefore(LocalDate.now().minusWeeks(1))) {
+//                        fehler.setText("Rückfrage: Datum liegt weit zurück");
+//                    }
+//                    if (datum.getValue().isAfter(LocalDate.now())) {
+//                        datum.requestFocus();
+//                        fehler.setText("Datum liegt in der Zukunft");
+//                        datum.getEditor().selectAll();
+//                    }
+//                } else {
+//                    datum.getEditor().selectAll();
+//                }
+//            }
+//        });
         // Umrechnung bei Änderung des Steuerssatzes
         SteuersatzCb.setOnAction(e -> {
 
@@ -183,8 +203,8 @@ public class ArtikelAnlegenController implements Initializable {
             meldung.setHeaderText("");
 //            meldung.setTitle(CONFIRMATION_TITLE);
 
-            if (artikelnummerTf.getText().isEmpty() || bezeichnungTf.getText().isEmpty() || (KategorieCb.getValue() == null) || TdTextArea.getText().isEmpty() || NettoTextfield.getText().isEmpty() ) {
-                
+            if (artikelnummerTf.getText().isEmpty() || bezeichnungTf.getText().isEmpty() || (KategorieCb.getValue() == null) || TdTextArea.getText().isEmpty() || NettoTextfield.getText().isEmpty()) {
+
                 meldung.showAndWait();
             }
             if (formIsValid) {
@@ -196,7 +216,7 @@ public class ArtikelAnlegenController implements Initializable {
     }
 
     // Schließt das Fenster bei Betätigung des abbrechen-Buttons
-     @FXML
+    @FXML
     public void handleCloseButtonAction() {
 
         if ((NettoTextfield.getText() == null || NettoTextfield.getText().trim().isEmpty())
@@ -214,7 +234,7 @@ public class ArtikelAnlegenController implements Initializable {
                 stage.close();
             }
         }
-}
+    }
 
     // Rechnet einen Nettobetrag in brutto um
     @FXML
@@ -225,6 +245,11 @@ public class ArtikelAnlegenController implements Initializable {
 
         // Nettopreis und Steuersatz holen
         NumberFormat nf_in = NumberFormat.getNumberInstance(Locale.GERMANY);
+
+        Alert meldung = new Alert(Alert.AlertType.INFORMATION, INFORMATION_TEXT_PREIS, ButtonType.OK);
+
+        meldung.setHeaderText("");
+//            meldung.setTitle(CONFIRMATION_TITLE);
 
         double preis;
         double steuer;
@@ -248,6 +273,11 @@ public class ArtikelAnlegenController implements Initializable {
         preis = (preis * (steuer + 100) / 100.0);
         preis = Math.floor(preis * 100) / 100.0;
 
+        if (preis > 1000) {
+
+            meldung.showAndWait();
+        }
+
         String output = nf_in.format(preis);
         BruttoTextfield.setText(output);
     }
@@ -256,41 +286,37 @@ public class ArtikelAnlegenController implements Initializable {
 
         boolean validate = true;
 
-        if (artikelnummerTf.getText().isEmpty()) {
+        if (NettoTextfield.getText().isEmpty()) {
 
-            artikelnummerMeldung.setText(FEHLER_KEINE_ARTIKELNUMMER);
-//            artikelnummerTf.requestFocus();
-
-            validate = false;
-
-        } else {
-            if (!artikelnummerTf.getText().matches("[0-9]{3}" + "-?" + "[0-9]{4}" + "-?" + "[0-9]{3}")) {
-
-                artikelnummerMeldung.setText(FEHLER_KEINE_GÜLTIGE_ARTIKELNUMMER);
-
-                validate = false;
-            } else {
-
-                artikelnummerMeldung.setText("");
-
-                validate = true;
-            }
-        }
-        if (bezeichnungTf.getText().isEmpty()) {
-
-            bezeichnungMeldung.setText(FEHLER_KEINE_BEZEICHNUNG);
+            preisMeldung.setText(FEHLER_KEIN_PREIS);
+            NettoTextfield.requestFocus();
 
             validate = false;
 
         } else {
-            bezeichnungMeldung.setText("");
+            preisMeldung.setText("");
 
             validate = true;
+        }
+
+        if (TdTextArea.getText().isEmpty()) {
+
+            TdMeldung.setText(FEHLER_KEINE_TD);
+            TdTextArea.requestFocus();
+
+            validate = false;
+
+        } else {
+            TdMeldung.setText("");
+
+            validate = true;
+
         }
 
         if (KategorieCb.getValue() == null) {
 
             kategorieMeldung.setText(FEHLER_KEINE_KATEGORIE);
+            KategorieCb.requestFocus();
 
             validate = false;
 
@@ -300,28 +326,39 @@ public class ArtikelAnlegenController implements Initializable {
             validate = true;
         }
 
-        if (TdTextArea.getText().isEmpty()) {
+        if (bezeichnungTf.getText().isEmpty()) {
 
-            TdMeldung.setText(FEHLER_KEINE_TD);
+            bezeichnungMeldung.setText(FEHLER_KEINE_BEZEICHNUNG);
+            bezeichnungTf.requestFocus();
 
             validate = false;
 
         } else {
-            TdMeldung.setText("");
+            bezeichnungMeldung.setText("");
 
             validate = true;
         }
 
-        if (NettoTextfield.getText().isEmpty()) {
+        if (artikelnummerTf.getText().isEmpty()) {
 
-            preisMeldung.setText(FEHLER_KEIN_PREIS);
+            artikelnummerMeldung.setText(FEHLER_KEINE_ARTIKELNUMMER);
+            artikelnummerTf.requestFocus();
 
             validate = false;
 
         } else {
-            preisMeldung.setText("");
+            if (!artikelnummerTf.getText().matches("[0-9]{3}" + "-?" + "[0-9]{4}" + "-?" + "[0-9]{3}")) {
 
-            validate = true;
+                artikelnummerMeldung.setText(FEHLER_KEINE_GÜLTIGE_ARTIKELNUMMER);
+                artikelnummerTf.requestFocus();
+
+                validate = false;
+            } else {
+
+                artikelnummerMeldung.setText("");
+
+                validate = true;
+            }
         }
 
         return validate;

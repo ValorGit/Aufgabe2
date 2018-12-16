@@ -2,6 +2,8 @@ package aufgabe02;
 
 import Filter.FilterArtikelNummern;
 import Filter.FilterHausnummer;
+import Filter.FilterAlphaNumeric;
+import Filter.FilterOrt;
 import Filter.FilterPLZ;
 import Filter.FilterTelefon;
 import java.net.URL;
@@ -51,7 +53,7 @@ public class KundenAnlegenController implements Initializable {
     private static final String FEHLER_KEINE_HAUSNUMMER = "Bitte geben Sie eine Hausnummer ein.";
 
     private static final String FEHLER_KEINE_PLZ = "Bitte geben Sie eine Postleitzahl ein.";
-    
+
     private static final String FEHLER_KEINE_GÜLTIGE_PLZ = "Bitte geben Sie eine gültige Postleitzahl ein.";
 
     private static final String FEHLER_KEIN_ORT = "Bitte geben Sie einen Ort ein.";
@@ -59,12 +61,14 @@ public class KundenAnlegenController implements Initializable {
     private static final String FEHLER_KEIN_BUNDESLAND = "Bitte wählen Sie ein Bundesland aus.";
 
     private static final String FEHLER_KEINE_TELEFONNUMMER = "Bitte geben Sie eine Telefonnummer ein.";
-    
+
     private static final String FEHLER_KEINE_GÜLTIGE_TELEFONNUMMER = "Bitte geben Sie eine gültige Telefonnummer ein.";
-    
+
     private static final String FEHLER_KEINE_GÜLTIGE_EMAIL = "Bitte geben Sie eine gültige E-Mail ein.";
-    
+
     private static final String FEHLER_KEINE_GÜLTIGE_IBAN = "Bitte geben Sie eine gültige IBAN ein.";
+
+    private static final String FEHLER_KEINE_GÜLTIGE_BIC = "Bitte geben Sie eine gültige BIC ein.";
 
     @FXML
     private TextField KontoinhaberTextfield;
@@ -201,12 +205,33 @@ public class KundenAnlegenController implements Initializable {
 
     @FXML
     private Label telefonnummerMeldung;
-    
+
     @FXML
     private Label emailMeldung;
-    
+
     @FXML
     private Label ibanMeldung;
+
+    @FXML
+    private Label bicMeldung;
+
+    @FXML
+    private Label firmennameNeuMeldung;
+
+    @FXML
+    private Label straßeNeuMeldung;
+
+    @FXML
+    private Label hausnummerNeuMeldung;
+
+    @FXML
+    private Label plzNeuMeldung;
+
+    @FXML
+    private Label ortNeuMeldung;
+
+    @FXML
+    private Label bundeslandNeuMeldung;
 
     private static final String CONFIRMATION_TEXT = "Soll das Fenster geschlossen werden? Ihre Änderungen werden verworfen.";
 
@@ -218,7 +243,7 @@ public class KundenAnlegenController implements Initializable {
     private int kId = 0;
 
     private String kundenId = setzeKundenId();
-    
+
     private final Meldung meldung = new Meldung();
 
     private Stage stage;
@@ -273,15 +298,13 @@ public class KundenAnlegenController implements Initializable {
                 stage.close();
             }
         }
-}
+    }
 
     /**
      * Schließt das aktive Fenster bei Betätigung des "abbrechen"-Buttons
      *
      * @param event wird bei Betätigung des "abbrechen"-Buttons ausgelöst
      */
-    
-
     /**
      * Legt die Kunden-ID fest.
      *
@@ -300,8 +323,14 @@ public class KundenAnlegenController implements Initializable {
         //Schreibt die Kunden-ID in das Textfeld
         kundenIdTextField.textProperty().set(kundenId);
         HausnummerTextfield.setTextFormatter(new TextFormatter<>(new FilterHausnummer()));
+        HausnummerTextfieldNeu.setTextFormatter(new TextFormatter<>(new FilterHausnummer()));
         PlzTextfield.setTextFormatter(new TextFormatter<>(new FilterPLZ()));
+        PLZTextfieldNeu.setTextFormatter(new TextFormatter<>(new FilterPLZ()));
+        OrtTextfield.setTextFormatter(new TextFormatter<>(new FilterOrt()));
+        OrtTextfieldNeu.setTextFormatter(new TextFormatter<>(new FilterOrt()));
         TelefonnummerTextfield.setTextFormatter(new TextFormatter<>(new FilterTelefon()));
+        IbanTextfield.setTextFormatter(new TextFormatter<>(new FilterAlphaNumeric()));
+        BicTextfield.setTextFormatter(new TextFormatter<>(new FilterAlphaNumeric()));
 
         /* Items der Combobox "Anrede" setzen. */
         ObservableList<String> listAnrede = FXCollections.observableArrayList("", "Frau", "Herr");
@@ -408,9 +437,15 @@ public class KundenAnlegenController implements Initializable {
                 OrtTextfieldNeu.setVisible(false);
                 LandCB1.setVisible(false);
                 BundeslandCB1.setVisible(false);
+                bundeslandNeuMeldung.setText("");
+                ortNeuMeldung.setText("");
+                plzNeuMeldung.setText("");
+                hausnummerNeuMeldung.setText("");
+                straßeNeuMeldung.setText("");
+                firmennameNeuMeldung.setText("");
 
-                ScrollpaneKd.setPrefHeight(820);
-                AnchorpaneKd.setPrefHeight(820);
+                ScrollpaneKd.setPrefHeight(900);
+                AnchorpaneKd.setPrefHeight(900);
 
                 AbbrechenBtn.setLayoutY(847);
                 SpeichernBtn.setLayoutY(847);
@@ -425,7 +460,7 @@ public class KundenAnlegenController implements Initializable {
             meldung.setHeaderText("");
 //            meldung.setTitle(CONFIRMATION_TITLE);
 
-            if (FirmennamenTextfield.getText().isEmpty() || StraßeTextfield.getText().isEmpty() || HausnummerTextfield.getText().isEmpty() || PlzTextfield.getText().isEmpty() || OrtTextfield.getText().isEmpty() || (BundeslandCB.getValue() == null) || TelefonnummerTextfield.getText().isEmpty()) {
+            if (FirmennamenTextfield.getText().isEmpty() || StraßeTextfield.getText().isEmpty() || HausnummerTextfield.getText().isEmpty() || PlzTextfield.getText().isEmpty() || OrtTextfield.getText().isEmpty() || (BundeslandCB.getValue() == null) || TelefonnummerTextfield.getText().isEmpty() || NeueLieferanschriftRb.isSelected()) {
 
                 meldung.showAndWait();
             }
@@ -470,91 +505,144 @@ public class KundenAnlegenController implements Initializable {
 
         boolean validate = true;
 
-        if (FirmennamenTextfield.getText().isEmpty()) {
+        if (NeueLieferanschriftRb.isSelected()) {
 
-            firmennameMeldung.setText(FEHLER_KEIN_FIRMENNAME);
-//            artikelnummerTf.requestFocus();
+            if (BundeslandCB1.getValue() == null) {
 
-            validate = false;
-
-        } else {
-
-            firmennameMeldung.setText("");
-
-            validate = true;
-        }
-
-        if (StraßeTextfield.getText().isEmpty()) {
-
-            straßeMeldung.setText(FEHLER_KEINE_STRASSE);
-
-            validate = false;
-
-        } else {
-            straßeMeldung.setText("");
-
-            validate = true;
-        }
-
-        if (HausnummerTextfield.getText().isEmpty()) {
-
-            hausnummerMeldung.setText(FEHLER_KEINE_HAUSNUMMER);
-
-            validate = false;
-
-        } else {
-            hausnummerMeldung.setText("");
-
-            validate = true;
-        }
-
-        if (PlzTextfield.getText().isEmpty()) {
-
-            plzMeldung.setText(FEHLER_KEINE_PLZ);
-
-            validate = false;
-
-       } else {
-            if (!PlzTextfield.getText().matches("[0-9]{5}")) {
-
-                plzMeldung.setText(FEHLER_KEINE_GÜLTIGE_PLZ);
+                bundeslandNeuMeldung.setText(FEHLER_KEIN_BUNDESLAND);
+                BundeslandCB1.requestFocus();
 
                 validate = false;
+
+            } else {
+                bundeslandNeuMeldung.setText("");
+
+                validate = true;
+            }
+            if (OrtTextfieldNeu.getText().isEmpty()) {
+
+                ortNeuMeldung.setText(FEHLER_KEIN_ORT);
+                OrtTextfieldNeu.requestFocus();
+
+                validate = false;
+
+            } else {
+                ortNeuMeldung.setText("");
+
+                validate = true;
+            }
+            if (PLZTextfieldNeu.getText().isEmpty()) {
+
+                plzNeuMeldung.setText(FEHLER_KEINE_PLZ);
+                PLZTextfieldNeu.requestFocus();
+
+                validate = false;
+
+            } else {
+                if (!PLZTextfieldNeu.getText().matches("[0-9]{5}")) {
+
+                    plzNeuMeldung.setText(FEHLER_KEINE_GÜLTIGE_PLZ);
+
+                    validate = false;
+                } else {
+
+                    plzNeuMeldung.setText("");
+
+                    validate = true;
+                }
+            }
+            if (HausnummerTextfieldNeu.getText().isEmpty()) {
+
+                hausnummerNeuMeldung.setText(FEHLER_KEINE_HAUSNUMMER);
+                HausnummerTextfieldNeu.requestFocus();
+
+                validate = false;
+
+            } else {
+                hausnummerNeuMeldung.setText("");
+
+                validate = true;
+
+            }
+            if (StraßeTextfieldNeu.getText().isEmpty()) {
+
+                straßeNeuMeldung.setText(FEHLER_KEINE_STRASSE);
+                StraßeTextfieldNeu.requestFocus();
+
+                validate = false;
+
+            } else {
+                straßeNeuMeldung.setText("");
+
+                validate = true;
+            }
+            if (FirmennamenTextfieldNeu.getText().isEmpty()) {
+
+                firmennameNeuMeldung.setText(FEHLER_KEIN_FIRMENNAME);
+                FirmennamenTextfieldNeu.requestFocus();
+
+                validate = false;
+
             } else {
 
-                plzMeldung.setText("");
+                firmennameNeuMeldung.setText("");
 
                 validate = true;
             }
         }
-
-        if (OrtTextfield.getText().isEmpty()) {
-
-            ortMeldung.setText(FEHLER_KEIN_ORT);
-
-            validate = false;
-
-        } else {
-            ortMeldung.setText("");
-
-            validate = true;
+        
+        if (RechnungsadresseRb.isSelected()) {
+            
+             bundeslandNeuMeldung.setText("");
+             ortNeuMeldung.setText("");
+             plzNeuMeldung.setText("");
+             hausnummerNeuMeldung.setText("");
+             straßeNeuMeldung.setText("");
+             firmennameNeuMeldung.setText("");
+             
+             validate = true;
         }
 
-        if (BundeslandCB.getValue() == null) {
-
-            bundeslandMeldung.setText(FEHLER_KEIN_BUNDESLAND);
-
-            validate = false;
-
-        } else {
-            bundeslandMeldung.setText("");
+        if (BicTextfield.getText().isEmpty() || BicTextfield.getText().matches("([A-Z]{4}DE[A-Z2-9]{1}[A-NP-Z0-2]{1}\\w{3})|([A-Z]{4}DE[A-Z2-9]{1}[A-NP-Z0-2]{1})") || BicTextfield.getText().matches("([A-Z]{4}AT[A-Z2-9]{1}[A-NP-Z0-2]{1}\\w{3})|([A-Z]{4}DE[A-Z2-9]{1}[A-NP-Z0-2]{1})")) {
+            bicMeldung.setText("");
+            BicTextfield.requestFocus();
 
             validate = true;
+
+        } else {
+            bicMeldung.setText(FEHLER_KEINE_GÜLTIGE_BIC);
+
+            validate = false;
+        }
+
+        if (IbanTextfield.getText().isEmpty() || IbanTextfield.getText().matches("DE[0-9]{20}") || IbanTextfield.getText().matches("AT[0-9]{18}")) {
+            ibanMeldung.setText("");
+            IbanTextfield.requestFocus();
+
+            validate = true;
+
+        } else {
+            ibanMeldung.setText(FEHLER_KEINE_GÜLTIGE_IBAN);
+
+            validate = false;
+        }
+
+        if (EmailTextfield.getText().isEmpty() || EmailTextfield.getText().matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+" + "[.]{1}" + "[a-zA-Z]{2,3}")) {
+            emailMeldung.setText("");
+            EmailTextfield.requestFocus();
+
+            validate = true;
+
+        } else {
+            emailMeldung.setText(FEHLER_KEINE_GÜLTIGE_EMAIL);
+
+            validate = false;
         }
 
         if (TelefonnummerTextfield.getText().isEmpty()) {
 
             telefonnummerMeldung.setText(FEHLER_KEINE_TELEFONNUMMER);
+            TelefonnummerTextfield.requestFocus();
 
             validate = false;
 
@@ -571,28 +659,95 @@ public class KundenAnlegenController implements Initializable {
                 validate = true;
             }
         }
-            if (EmailTextfield.getText().isEmpty() || EmailTextfield.getText().matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+" + "[.]{1}" + "[a-zA-Z]{2,3}")){
-                emailMeldung.setText("");
 
-                validate = true;
-                
-            }else {
-                emailMeldung.setText(FEHLER_KEINE_GÜLTIGE_EMAIL);
+        if (BundeslandCB.getValue() == null) {
+
+            bundeslandMeldung.setText(FEHLER_KEIN_BUNDESLAND);
+            BundeslandCB.requestFocus();
+
+            validate = false;
+
+        } else {
+            bundeslandMeldung.setText("");
+
+            validate = true;
+        }
+
+        if (OrtTextfield.getText().isEmpty()) {
+
+            ortMeldung.setText(FEHLER_KEIN_ORT);
+            OrtTextfield.requestFocus();
+
+            validate = false;
+
+        } else {
+            ortMeldung.setText("");
+
+            validate = true;
+        }
+
+        if (PlzTextfield.getText().isEmpty()) {
+
+            plzMeldung.setText(FEHLER_KEINE_PLZ);
+            PlzTextfield.requestFocus();
+
+            validate = false;
+
+        } else {
+            if (!PlzTextfield.getText().matches("[0-9]{5}")) {
+
+                plzMeldung.setText(FEHLER_KEINE_GÜLTIGE_PLZ);
 
                 validate = false;
-            }
-            
-            if (IbanTextfield.getText().isEmpty() || IbanTextfield.getText().matches("DE[0-9]{20}") || IbanTextfield.getText().matches("AT[0-9]{18}")){
-                ibanMeldung.setText("");
+            } else {
+
+                plzMeldung.setText("");
 
                 validate = true;
-                
-            }else {
-                ibanMeldung.setText(FEHLER_KEINE_GÜLTIGE_IBAN);
-
-                validate = false;
             }
-        
+        }
+
+        if (HausnummerTextfield.getText().isEmpty()) {
+
+            hausnummerMeldung.setText(FEHLER_KEINE_HAUSNUMMER);
+            HausnummerTextfield.requestFocus();
+
+            validate = false;
+
+        } else {
+            hausnummerMeldung.setText("");
+
+            validate = true;
+
+        }
+
+        if (StraßeTextfield.getText().isEmpty()) {
+
+            straßeMeldung.setText(FEHLER_KEINE_STRASSE);
+            StraßeTextfield.requestFocus();
+
+            validate = false;
+
+        } else {
+            straßeMeldung.setText("");
+
+            validate = true;
+        }
+
+        if (FirmennamenTextfield.getText().isEmpty()) {
+
+            firmennameMeldung.setText(FEHLER_KEIN_FIRMENNAME);
+            FirmennamenTextfield.requestFocus();
+
+            validate = false;
+
+        } else {
+
+            firmennameMeldung.setText("");
+
+            validate = true;
+        }
+
         return validate;
     }
 

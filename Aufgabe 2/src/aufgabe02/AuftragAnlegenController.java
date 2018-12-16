@@ -1,5 +1,6 @@
 package aufgabe02;
 
+import Filter.FilterBestellNummer;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Calendar;
@@ -15,14 +16,18 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -37,6 +42,16 @@ public class AuftragAnlegenController implements Initializable {
 
     // Variablen deklarieren
     private MainApp mainApp;
+    
+    private static final String FEHLER_KEIN_KUNDE = "Bitte geben Sie einen Auftraggeber ein.";
+
+    private static final String FEHLER_KEINE_BESTELLNUMMER = "Bitte geben Sie eine Bestellnummer ein.";
+
+    private static final String FEHLER_KEINE_GÜLTIGE_BESTELLNUMMER = "Bitte geben Sie eine gültige Bestellnummer ein.";
+    
+    private static final String FEHLER_DATUM = "Der eingebene Wert liegt in der Vergangenheit.";
+    
+    private static final String INFORMATION_TEXT = "Bitte füllen Sie die mit * markierten Pflichtfelder aus.";
 
     @FXML
     private Button abbrechenBtn;
@@ -103,6 +118,15 @@ public class AuftragAnlegenController implements Initializable {
 
     @FXML
     private TextField auftragswertTextField;
+    
+    @FXML
+    private Label kundeMeldung;
+    
+    @FXML
+    private Label bestellnrMeldung;
+    
+    @FXML
+    private Label datumMeldung;
 
     private int aId = 0;
     
@@ -159,6 +183,7 @@ public class AuftragAnlegenController implements Initializable {
 
         //Wählt das heutige Datum als Standard beim Datepicker
         BestelldatumDp.setValue(LocalDate.now());
+        bestellNrTF.setTextFormatter(new TextFormatter<>(new FilterBestellNummer()));
 
         //Schreibt die Auftrags-ID in das Textfeld
         auftragsIdTextField.textProperty().set(auftragsId);
@@ -190,6 +215,23 @@ public class AuftragAnlegenController implements Initializable {
                 artikelTableView.getItems());
 
         auftragswertTextField.textProperty().bind(Bindings.format("%.2f", total));
+        
+        speichernBtn.setOnAction((ActionEvent event) -> {
+            boolean formIsValid = validateForm();
+            Alert meldung = new Alert(Alert.AlertType.INFORMATION, INFORMATION_TEXT, ButtonType.OK);
+
+            meldung.setHeaderText("");
+//            meldung.setTitle(CONFIRMATION_TITLE);
+
+            if (kundeTF.getText().isEmpty() || bestellNrTF.getText().isEmpty()) {
+
+                meldung.showAndWait();
+            }
+            if (formIsValid) {
+                speichern();
+
+            }
+        });
 
     }
 
@@ -265,6 +307,73 @@ public class AuftragAnlegenController implements Initializable {
             }
         }
 }
+    
+    private void speichern() {
+
+        System.out.println("Hab gespeichert");
+        // In Datenstruktur ablegen
+
+//        resetForm();
+    }
+    
+    private boolean validateForm() {
+
+        boolean validate = true;
+        
+
+        if (BestelldatumDp.getValue().isBefore(LocalDate.now())) {
+            datumMeldung.setText(FEHLER_DATUM);
+            BestelldatumDp.requestFocus();
+            
+            validate = false;
+            
+            
+        } else {
+            datumMeldung.setText("");
+            
+            validate = true;
+        }
+        
+         if (kundeTF.getText().isEmpty()) {
+
+            kundeMeldung.setText(FEHLER_KEIN_KUNDE);
+            kundeTF.requestFocus();
+
+            validate = false;
+            
+            } else {
+
+                kundeMeldung.setText("");
+
+                validate = true;
+            }
+        
+
+        if (bestellNrTF.getText().isEmpty()) {
+
+            bestellnrMeldung.setText(FEHLER_KEINE_BESTELLNUMMER);
+            bestellNrTF.requestFocus();
+
+            validate = false;
+
+        } else {
+            if (!bestellNrTF.getText().matches("[0-9]{2}" + "/?" + "[0-9]{4}")) {
+
+                bestellnrMeldung.setText(FEHLER_KEINE_GÜLTIGE_BESTELLNUMMER);
+                bestellNrTF.requestFocus();
+
+                validate = false;
+            } else {
+
+                bestellnrMeldung.setText("");
+
+                validate = true;
+            }
+        }
+       
+
+        return validate;
+    }
 
     /**
      * Legt das Fenster als aktives Fenster fest
