@@ -17,7 +17,7 @@ public class FilterAlphaNumeric implements UnaryOperator<TextFormatter.Change> {
     
    
 //    public static final String REGEX = "-?\\d+(" + SEPERATOR + "\\d+)?";
-    public static final String REGEX_EINGABE = "\\w{0,22}+";
+    public static final String REGEX_EINGABE = "\\w{0,11}+";
     
     @Override
     public TextFormatter.Change apply(TextFormatter.Change tfc) {

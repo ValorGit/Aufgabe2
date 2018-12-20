@@ -18,7 +18,8 @@ public class FilterBestellNummer implements UnaryOperator<TextFormatter.Change> 
     
     private static final char SEPERATOR = '/';
 //    public static final String REGEX = "-?\\d+(" + SEPERATOR + "\\d+)?";
-    public static final String REGEX_EINGABE = "[0-9]{1,2}" + "/?" + "[0-9]{0,4}";
+    public static final String REGEX_EINGABE = "\\d{0,2}|\\d{1,2}" + "/\\d{0,4}|/\\d{1,4}";
+   
     
     @Override
     public TextFormatter.Change apply(TextFormatter.Change tfc) {

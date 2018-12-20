@@ -16,9 +16,9 @@ import javafx.scene.control.TextFormatter;
  */
 public class FilterArtikelNummern implements UnaryOperator<TextFormatter.Change> {
     
-    private static final char SEPERATOR = '-';
+    private static final char SEPERATOR = '+';
 //    public static final String REGEX = "-?\\d+(" + SEPERATOR + "\\d+)?";
-    public static final String REGEX_EINGABE = "[0-9]{1,7}" + "-?" + "[0-9]{0,4}" +"-?" + "[0-9]{0,3}";
+    public static final String REGEX_EINGABE = "\\d{0,3}|\\d{1,3}" + "-\\d{0,5}|-\\d{1,5}" + "-?" + "\\d{0,3}";
     
     @Override
     public TextFormatter.Change apply(TextFormatter.Change tfc) {
