@@ -11,7 +11,7 @@ import javafx.scene.control.TextFormatter;
 
 /**
  *
- * @author Alex
+ * @author Alexander Dünne, Jürgen Christl
  */
 public class FilterTelefon implements UnaryOperator<TextFormatter.Change> {
     

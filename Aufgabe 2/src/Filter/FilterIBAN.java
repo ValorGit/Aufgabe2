@@ -11,7 +11,7 @@ import javafx.scene.control.TextFormatter;
 
 /**
  *
- * @author Alex
+ * @author Alexander Dünne, Jürgen Christl
  */
 public class FilterIBAN implements UnaryOperator<TextFormatter.Change> {
     

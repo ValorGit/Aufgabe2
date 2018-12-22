@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 
 /**
  *
- * @author Alex
+ * @author Alexander Dünne, Jürgen Christl
  */
 public class DataValidation {
     

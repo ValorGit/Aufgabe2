@@ -12,13 +12,13 @@ import javafx.scene.control.TextFormatter;
 
 /**
  *
- * @author Alex
+ * @author Alexander Dünne, Jürgen Christl
  */
 public class FilterBestellNummer implements UnaryOperator<TextFormatter.Change> {
     
     private static final char SEPERATOR = '/';
 //    public static final String REGEX = "-?\\d+(" + SEPERATOR + "\\d+)?";
-    public static final String REGEX_EINGABE = "\\d{0,2}|\\d{1,2}" + "/\\d{0,4}|/\\d{1,4}";
+    public static final String REGEX_EINGABE = "\\d{0,2}|\\d{1,2}|\\d{2}" + "/\\d{0,4}";
    
     
     @Override

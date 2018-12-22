@@ -8,12 +8,12 @@ import javafx.scene.control.TextFormatter;
 
 /**
  *
- * 
+ * @author Alexander Dünne, Jürgen Christl
  */
 public class FilterDecimal implements UnaryOperator<TextFormatter.Change> {
     private static final char SEPERATOR = DecimalFormatSymbols.getInstance().getDecimalSeparator();
     public static final String REGEX = "-?\\d+(" + SEPERATOR + "\\d+)?";
-    public static final String REGEX_EINGABE = "-?\\d*|-?\\d+" + SEPERATOR + "?|-?\\d+" + SEPERATOR + "\\d+";
+    public static final String REGEX_EINGABE = "-?\\d*|-?\\d+" + SEPERATOR + "?|-?\\d+" + SEPERATOR + "\\d{1,2}";
 //    public static final String REGEX_EINGABE = "-?\\d*|-?\\d+" + SEPERATOR + "?\\d*";
    
     

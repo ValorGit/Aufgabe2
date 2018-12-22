@@ -11,7 +11,7 @@ import javafx.scene.control.TextFormatter;
 
 /**
  *
- * @author kb
+ * @author Alexander Dünne, Jürgen Christl
  */
 public class FilterOrt implements UnaryOperator<TextFormatter.Change> {
     
