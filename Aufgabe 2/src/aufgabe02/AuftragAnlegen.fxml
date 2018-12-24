@@ -45,10 +45,10 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="auftragsIdTextField" disable="true" layoutX="225.0" layoutY="48.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="47.0" />
+            <TextField fx:id="auftragsIdTf" disable="true" layoutX="225.0" layoutY="48.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="47.0" />
             <TextField fx:id="kundeTF" layoutX="215.0" layoutY="88.0" prefHeight="25.0" prefWidth="234.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="87.0" />
             <TextField fx:id="bestellNrTF" layoutX="215.0" layoutY="128.0" promptText="zz/zzzz (z = Ziffer)" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="127.0" />
-            <DatePicker fx:id="BestelldatumDp" layoutX="203.0" layoutY="208.0" prefHeight="30.0" prefWidth="150.0" AnchorPane.leftAnchor="215.0" />
+            <DatePicker fx:id="bestelldatumDp" layoutX="203.0" layoutY="208.0" prefHeight="30.0" prefWidth="150.0" AnchorPane.leftAnchor="215.0" />
             <TableView fx:id="artikelTableView" editable="true" layoutX="14.0" layoutY="262.0" pickOnBounds="false" prefHeight="215.0" prefWidth="550.0" AnchorPane.leftAnchor="25.0">
               <columns>
                 <TableColumn fx:id="artikelIdColumn" onEditCommit="#changeArtikelIdCellEvent" prefWidth="94.0" resizable="false" text="Artikel-ID" />
@@ -59,12 +59,12 @@
               </columns>
             </TableView>
             <Button fx:id="artikelbearbeitenButton" layoutX="475.0" layoutY="554.0" mnemonicParsing="false" onAction="#neueAuftragsposButtonPushed" prefHeight="30.0" prefWidth="100.0" text="Hinzufügen" AnchorPane.leftAnchor="475.0" />
-            <TextField fx:id="artikelIdTextField" layoutX="25.0" layoutY="554.0" prefHeight="31.0" prefWidth="82.0" promptText="Artikel-ID" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="493.0" />
-            <TextField fx:id="bezeichnungTextField" layoutX="110.0" layoutY="554.0" prefHeight="31.0" prefWidth="196.0" promptText="Bezeichnung" AnchorPane.leftAnchor="110.0" />
-            <TextField fx:id="anzahlTextField" layoutX="309.0" layoutY="554.0" prefHeight="31.0" prefWidth="67.0" promptText="Anzahl" AnchorPane.leftAnchor="309.0" />
-            <TextField fx:id="einzelpreisTextField" layoutX="378.0" layoutY="554.0" prefHeight="31.0" prefWidth="87.0" promptText="Stückpreis" AnchorPane.leftAnchor="378.0" />
-            <Button fx:id="LöschenButton" layoutX="139.0" layoutY="490.0" mnemonicParsing="false" onAction="#deleteButtonPushed" prefHeight="30.0" prefWidth="100.0" text="Löschen" AnchorPane.leftAnchor="140.0" />
-            <TextField fx:id="auftragswertTextField" layoutX="448.0" layoutY="496.0" prefHeight="25.0" prefWidth="100.0" AnchorPane.rightAnchor="25.0" />
+            <TextField fx:id="artikelIdTf" layoutX="25.0" layoutY="554.0" prefHeight="31.0" prefWidth="82.0" promptText="Artikel-ID" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="493.0" />
+            <TextField fx:id="bezeichnungTf" layoutX="110.0" layoutY="554.0" prefHeight="31.0" prefWidth="196.0" promptText="Bezeichnung" AnchorPane.leftAnchor="110.0" />
+            <TextField fx:id="anzahlTf" layoutX="309.0" layoutY="554.0" prefHeight="31.0" prefWidth="67.0" promptText="Anzahl" AnchorPane.leftAnchor="309.0" />
+            <TextField fx:id="einzelpreisTf" layoutX="378.0" layoutY="554.0" prefHeight="31.0" prefWidth="87.0" promptText="Stückpreis" AnchorPane.leftAnchor="378.0" />
+            <Button fx:id="löschenButton" layoutX="139.0" layoutY="490.0" mnemonicParsing="false" onAction="#deleteButtonPushed" prefHeight="30.0" prefWidth="100.0" text="Löschen" AnchorPane.leftAnchor="140.0" />
+            <TextField fx:id="auftragswertTf" layoutX="448.0" layoutY="496.0" prefHeight="25.0" prefWidth="100.0" AnchorPane.rightAnchor="25.0" />
             <Label layoutX="352.0" layoutY="499.0" text="Auftragswert" AnchorPane.leftAnchor="380.0">
                <font>
                   <Font size="14.0" />
@@ -72,7 +72,7 @@
             </Label>
             <Button fx:id="abbrechenBtn" layoutX="475.0" layoutY="640.0" mnemonicParsing="false" onAction="#handleCloseButtonAction" prefHeight="30.0" prefWidth="100.0" text="Abbrechen" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="470.0" />
             <Button fx:id="speichernBtn" layoutX="352.0" layoutY="640.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Speichern" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="350.0" />
-            <ToggleButton fx:id="artikelBearbeitenButton" layoutX="32.0" layoutY="490.0" mnemonicParsing="false" onAction="#bearbeitenButtonPushed" prefHeight="30.0" prefWidth="100.0" text="Bearbeiten" AnchorPane.leftAnchor="25.0" />
+            <ToggleButton fx:id="artikelBearbeitenBtn" layoutX="32.0" layoutY="490.0" mnemonicParsing="false" onAction="#bearbeitenButtonPushed" prefHeight="30.0" prefWidth="100.0" text="Bearbeiten" AnchorPane.leftAnchor="25.0" />
             <TextField disable="true" layoutX="216.0" layoutY="165.0" prefHeight="30.0" prefWidth="150.0" />
             <Label fx:id="kundeMeldung" layoutX="457.0" layoutY="83.0" prefHeight="38.0" prefWidth="127.0" textFill="#ee1616" wrapText="true" AnchorPane.leftAnchor="457.0">
                <font>

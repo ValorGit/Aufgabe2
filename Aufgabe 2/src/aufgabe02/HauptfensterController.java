@@ -24,7 +24,7 @@ import javafx.stage.Stage;
 /**
  * Zeigt das Hauptfenster mit Auswahlmenü an.
  *
- * @author Jürgen
+ * @author Alexander Dünne, Jürgen Christl
  */
 public class HauptfensterController implements Initializable {
 

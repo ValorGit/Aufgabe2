@@ -35,7 +35,7 @@ import javafx.stage.Stage;
 /**
  * Zeigt das Fenster zum Anlegen neuer Artikel an.
  *
- * @author Alexander Dünne
+ * @author Alexander Dünne, Jürgen Christl
  */
 public class ArtikelAnlegenController implements Initializable {
 
@@ -66,22 +66,19 @@ public class ArtikelAnlegenController implements Initializable {
     private TextField artikelIdTextField;
 
     @FXML
-    private TextField NettoTextfield;
+    private TextField nettoTf;
 
     @FXML
-    private TextField BruttoTextfield;
+    private TextField bruttoTf;
 
     @FXML
-    private ComboBox<String> SteuersatzCb;
+    private ComboBox<String> steuersatzCb;
 
     @FXML
-    private ComboBox<String> KategorieCb;
+    private ComboBox<String> kategorieCb;
 
     @FXML
-    private RadioButton KontoRb;
-
-    @FXML
-    private Label Meldung;
+    private RadioButton kontoRb;
 
     @FXML
     private Label artikelnummerMeldung;
@@ -111,7 +108,7 @@ public class ArtikelAnlegenController implements Initializable {
     private TextArea TdTextArea;
 
     @FXML
-    private Button AbbrechenBtn;
+    private Button abbrechen;
 
     @FXML
     private Button speichern;
@@ -151,17 +148,17 @@ public class ArtikelAnlegenController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         artikelnummerTf.setTextFormatter(new TextFormatter<>(new FilterArtikelNummern()));
-        NettoTextfield.setTextFormatter(new TextFormatter<>(new FilterDecimal()));
+        nettoTf.setTextFormatter(new TextFormatter<>(new FilterDecimal()));
 
         // artikelId in das Textfeld eintragen
         artikelIdTextField.textProperty().set(artikelId);
         // Steuersätze festlegen
         ObservableList<String> listSteuersatz = FXCollections.observableArrayList("", "19", "7");
-        SteuersatzCb.setItems(listSteuersatz);
-        SteuersatzCb.setValue("19");
+        steuersatzCb.setItems(listSteuersatz);
+        steuersatzCb.setValue("19");
 
         // Listener zur Umrechnung des Nettopreises in Brutto
-        NettoTextfield.textProperty().addListener(new ChangeListener<String>() {
+        nettoTf.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable,
                     String oldValue, String newValue) {
@@ -187,14 +184,14 @@ public class ArtikelAnlegenController implements Initializable {
 //            }
 //        });
         // Umrechnung bei Änderung des Steuerssatzes
-        SteuersatzCb.setOnAction(e -> {
+        steuersatzCb.setOnAction(e -> {
 
             umrechnen();
         });
 
         //Artikelkategorien festlegen
         ObservableList<String> listKategorie = FXCollections.observableArrayList("Kategorie 1", "Kategorie 2", "Kategorie 3");
-        KategorieCb.setItems(listKategorie);
+        kategorieCb.setItems(listKategorie);
 
         speichern.setOnAction((ActionEvent event) -> {
             boolean formIsValid = validateForm();
@@ -203,7 +200,7 @@ public class ArtikelAnlegenController implements Initializable {
             meldung.setHeaderText("");
 //            meldung.setTitle(CONFIRMATION_TITLE);
 
-            if (artikelnummerTf.getText().isEmpty() || bezeichnungTf.getText().isEmpty() || (KategorieCb.getValue() == null) || TdTextArea.getText().isEmpty() || NettoTextfield.getText().isEmpty()) {
+            if (artikelnummerTf.getText().isEmpty() || bezeichnungTf.getText().isEmpty() || (kategorieCb.getValue() == null) || TdTextArea.getText().isEmpty() || nettoTf.getText().isEmpty()) {
 
                 meldung.showAndWait();
             }
@@ -219,10 +216,10 @@ public class ArtikelAnlegenController implements Initializable {
     @FXML
     public void handleCloseButtonAction() {
 
-        if ((NettoTextfield.getText() == null || NettoTextfield.getText().trim().isEmpty())
-                && (BruttoTextfield.getText() == null || BruttoTextfield.getText().trim().isEmpty())
-                && (SteuersatzCb.getValue() == "19")
-                && (KategorieCb.getValue() == null)
+        if ((nettoTf.getText() == null || nettoTf.getText().trim().isEmpty())
+                && (bruttoTf.getText() == null || bruttoTf.getText().trim().isEmpty())
+                && (steuersatzCb.getValue() == "19")
+                && (kategorieCb.getValue() == null)
                 && (artikelnummerTf.getText() == null || artikelnummerTf.getText().trim().isEmpty())
                 && (beschreibungTextArea.getText() == null || beschreibungTextArea.getText().trim().isEmpty())
                 && (bezeichnungTf.getText() == null || bezeichnungTf.getText().trim().isEmpty())
@@ -241,7 +238,7 @@ public class ArtikelAnlegenController implements Initializable {
     private void umrechnen() {
 
         // Ausgabefeld leeren um inkonsistente Anzeigen zu vermeiden
-        BruttoTextfield.clear();
+        bruttoTf.clear();
 
         // Nettopreis und Steuersatz holen
         NumberFormat nf_in = NumberFormat.getNumberInstance(Locale.GERMANY);
@@ -254,15 +251,15 @@ public class ArtikelAnlegenController implements Initializable {
         double preis;
         double steuer;
         try {
-            Number p = nf_in.parse(NettoTextfield.getText());
-            Number s = nf_in.parse(SteuersatzCb.getValue());
+            Number p = nf_in.parse(nettoTf.getText());
+            Number s = nf_in.parse(steuersatzCb.getValue());
             preis = p.doubleValue();
             steuer = s.doubleValue();
 
             preisMeldung.setText("");
 
         } catch (ParseException e) {
-            NettoTextfield.clear();
+            nettoTf.clear();
             System.out.println(e.getMessage());
             preisMeldung.setText(FEHLER_KEINE_DEZIMALZAHL);
 
@@ -279,24 +276,28 @@ public class ArtikelAnlegenController implements Initializable {
         }
 
         String output = nf_in.format(preis);
-        BruttoTextfield.setText(output);
+        bruttoTf.setText(output);
     }
 
+    // Kontroliert das Formular auf Vollständigkeit und Korrektheit.
     private boolean validateForm() {
 
         boolean validate = true;
 
-        if (NettoTextfield.getText().isEmpty()) {
+        if (nettoTf.getText().isEmpty()) {
 
             preisMeldung.setText(FEHLER_KEIN_PREIS);
-            NettoTextfield.requestFocus();
+            nettoTf.requestFocus();
 
             validate = false;
 
         } else {
             preisMeldung.setText("");
 
-            validate = true;
+            if (validate != false) {
+
+                validate = true;
+            }
         }
 
         if (TdTextArea.getText().isEmpty()) {
@@ -309,21 +310,27 @@ public class ArtikelAnlegenController implements Initializable {
         } else {
             TdMeldung.setText("");
 
-            validate = true;
+            if (validate != false) {
 
+                validate = true;
+
+            }
         }
 
-        if (KategorieCb.getValue() == null) {
+        if (kategorieCb.getValue() == null) {
 
             kategorieMeldung.setText(FEHLER_KEINE_KATEGORIE);
-            KategorieCb.requestFocus();
+            kategorieCb.requestFocus();
 
             validate = false;
 
         } else {
             kategorieMeldung.setText("");
 
-            validate = true;
+            if (validate != false) {
+
+                validate = true;
+            }
         }
 
         if (bezeichnungTf.getText().isEmpty()) {
@@ -336,7 +343,10 @@ public class ArtikelAnlegenController implements Initializable {
         } else {
             bezeichnungMeldung.setText("");
 
-            validate = true;
+            if (validate != false) {
+
+                validate = true;
+            }
         }
 
         if (artikelnummerTf.getText().isEmpty()) {
@@ -357,7 +367,10 @@ public class ArtikelAnlegenController implements Initializable {
 
                 artikelnummerMeldung.setText("");
 
-                validate = true;
+                if (validate != false) {
+
+                    validate = true;
+                }
             }
         }
 

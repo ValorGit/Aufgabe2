@@ -15,6 +15,12 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * Legt die Main Stage fest und ermöglicht das öffnen der einzelnen Fenster.
+ *
+ * @author Alexander Dünne, Jürgen Christl
+ */
+
 public class MainApp extends Application {
 
     //legt die Stage für das Hauptfenster fest

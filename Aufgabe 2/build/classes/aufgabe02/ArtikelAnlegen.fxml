@@ -58,20 +58,20 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="NettoTextfield" alignment="CENTER_RIGHT" layoutX="214.0" layoutY="628.0" prefHeight="25.0" prefWidth="85.0" AnchorPane.leftAnchor="215.0" />
+            <TextField fx:id="nettoTf" alignment="CENTER_RIGHT" layoutX="214.0" layoutY="628.0" prefHeight="25.0" prefWidth="85.0" AnchorPane.leftAnchor="215.0" />
             <Label layoutX="129.0" layoutY="660.0" text="Bruttopreis" AnchorPane.leftAnchor="126.0" AnchorPane.topAnchor="670.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="BruttoTextfield" alignment="CENTER_RIGHT" editable="false" layoutX="214.0" layoutY="668.0" prefHeight="25.0" prefWidth="85.0" AnchorPane.leftAnchor="215.0" />
+            <TextField fx:id="bruttoTf" alignment="CENTER_RIGHT" disable="true" editable="false" layoutX="214.0" layoutY="668.0" prefHeight="25.0" prefWidth="85.0" AnchorPane.leftAnchor="215.0" />
             <Label layoutX="364.0" layoutY="630.0" text="Steuersatz">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="SteuersatzCb" editable="true" layoutX="444.0" layoutY="628.0" prefHeight="25.0" prefWidth="84.0" />
-            <ComboBox fx:id="KategorieCb" layoutX="214.0" layoutY="168.0" prefWidth="150.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="167.0" />
+            <ComboBox fx:id="steuersatzCb" editable="true" layoutX="444.0" layoutY="628.0" prefHeight="25.0" prefWidth="84.0" />
+            <ComboBox fx:id="kategorieCb" layoutX="214.0" layoutY="168.0" prefWidth="150.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="167.0" />
             <Label layoutX="304.0" layoutY="630.0" text="€">
                <font>
                   <Font size="14.0" />

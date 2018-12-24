@@ -37,7 +37,7 @@ import javafx.stage.Stage;
 /**
  * Zeigt das Formular zum Anlegen von Kunden in einem neuen Fenster an
  *
- * @author Alexander Dünne
+ * @author Alexander Dünne, Jürgen Christl
  */
 public class KundenAnlegenController implements Initializable {
 
@@ -71,119 +71,119 @@ public class KundenAnlegenController implements Initializable {
     private static final String FEHLER_KEINE_GÜLTIGE_BIC = "Bitte geben Sie eine gültige BIC ein.";
 
     @FXML
-    private TextField KontoinhaberTextfield;
+    private TextField kontoinhaberTf;
 
     @FXML
-    private TextField FirmennamenTextfield;
+    private TextField firmennamenTf;
 
     @FXML
-    private TextField VornameTextfield;
+    private TextField vornameTf;
 
     @FXML
-    private TextField NachnameTextfield;
+    private TextField nachnameTf;
 
     @FXML
-    private TextField StraßeTextfield;
+    private TextField straßeTf;
 
     @FXML
-    private TextField HausnummerTextfield;
+    private TextField hausnummerTf;
 
     @FXML
-    private TextField PlzTextfield;
+    private TextField plzTf;
 
     @FXML
-    private TextField OrtTextfield;
+    private TextField ortTf;
 
     @FXML
-    private TextField TelefonnummerTextfield;
+    private TextField telefonnummerTf;
 
     @FXML
-    private TextField EmailTextfield;
+    private TextField emailTf;
 
     @FXML
-    private ComboBox<String> AnredeCB;
+    private ComboBox<String> anredeCB;
 
     @FXML
-    private ComboBox<String> LandCB;
+    private ComboBox<String> landCB;
 
     @FXML
-    private ComboBox<String> BundeslandCB;
+    private ComboBox<String> bundeslandCB;
 
     @FXML
-    private RadioButton KontoRb;
+    private RadioButton kontoRb;
 
     @FXML
-    private CheckBox KontoCb;
+    private CheckBox kontoCb;
 
     @FXML
-    private Button AbbrechenBtn;
+    private Button abbrechen;
 
     @FXML
-    private Button SpeichernBtn;
+    private Button speichern;
 
     @FXML
-    private TextField IbanTextfield;
+    private TextField ibanTf;
 
     @FXML
-    private TextField BicTextfield;
+    private TextField bicTf;
 
     @FXML
-    private TextField BankTextfield;
+    private TextField bankTf;
 
     //Textfelderstellung bei abweichender Lieferanschrift
     @FXML
-    private Label FirmennameLabelNeu;
+    private Label firmennameLabelNeu;
 
     @FXML
-    private Label StraßeLabelNeu;
+    private Label straßeLabelNeu;
 
     @FXML
-    private Label OrtLabelNeu;
+    private Label ortLabelNeu;
 
     @FXML
-    private Label LandLabelNeu;
+    private Label landLabelNeu;
 
     @FXML
-    private Label BundeslandLabelNeu;
+    private Label bundeslandLabelNeu;
 
     @FXML
-    private TextField FirmennamenTextfieldNeu;
+    private TextField firmennamenTfNeu;
 
     @FXML
-    private TextField VornameTextfieldNeu;
+    private TextField vornameTfNeu;
 
     @FXML
-    private TextField NachnameTextfieldNeu;
+    private TextField nachnameTfNeu;
 
     @FXML
-    private TextField StraßeTextfieldNeu;
+    private TextField straßeTfNeu;
 
     @FXML
-    private TextField HausnummerTextfieldNeu;
+    private TextField hausnummerTfNeu;
 
     @FXML
-    private TextField PLZTextfieldNeu;
+    private TextField plzTfNeu;
 
     @FXML
-    private TextField OrtTextfieldNeu;
+    private TextField ortTfNeu;
 
     @FXML
-    private ComboBox<String> LandCB1;
+    private ComboBox<String> landCb1;
 
     @FXML
-    private ComboBox<String> BundeslandCB1;
+    private ComboBox<String> bundeslandCb1;
 
     @FXML
-    private RadioButton RechnungsadresseRb;
+    private RadioButton rechnungsadresseRb;
 
     @FXML
-    private RadioButton NeueLieferanschriftRb;
+    private RadioButton neueLieferanschriftRb;
 
     @FXML
-    private AnchorPane AnchorpaneKd;
+    private AnchorPane anchorpaneKd;
 
     @FXML
-    private ScrollPane ScrollpaneKd;
+    private ScrollPane scrollpaneKd;
 
     @FXML
     private Label firmennameMeldung;
@@ -238,7 +238,7 @@ public class KundenAnlegenController implements Initializable {
     private static final String CONFIRMATION_TITLE = "Abbrechen";
 
     @FXML
-    private TextField kundenIdTextField;
+    private TextField kundenIdTf;
 
     private int kId = 0;
 
@@ -264,33 +264,25 @@ public class KundenAnlegenController implements Initializable {
     @FXML
     public void handleCloseButtonAction() {
 
-        if (FirmennamenTextfield.getText().isEmpty()
-                & VornameTextfield.getText().isEmpty()
-                & NachnameTextfield.getText().isEmpty()
-                & StraßeTextfield.getText().isEmpty()
-                & HausnummerTextfield.getText().isEmpty()
-                & PlzTextfield.getText().isEmpty()
-                & OrtTextfield.getText().isEmpty()
-                & TelefonnummerTextfield.getText().isEmpty()
-                & EmailTextfield.getText().isEmpty()
-                & (AnredeCB.getValue() == null)
-                & (LandCB.getValue() == "Deutschland")
-                & (BundeslandCB.getValue() == null)
-                & TelefonnummerTextfield.getText().isEmpty()
-                & EmailTextfield.getText().isEmpty()
-                & KontoinhaberTextfield.getText().isEmpty()
-                & IbanTextfield.getText().isEmpty()
-                & BicTextfield.getText().isEmpty()
-                & BankTextfield.getText().isEmpty()
-                & FirmennamenTextfieldNeu.getText().isEmpty()
-                & //                VornameTextfieldNeu.getText().isEmpty() &
-                //                NachnameTextfieldNeu.getText().isEmpty() &
-                StraßeTextfieldNeu.getText().isEmpty()
-                & HausnummerTextfieldNeu.getText().isEmpty()
-                & PLZTextfieldNeu.getText().isEmpty()
-                & OrtTextfieldNeu.getText().isEmpty()
-                & (LandCB1.getValue() == "Deutschland")
-                & (BundeslandCB1.getValue() == null)) {
+        if (firmennamenTf.getText().isEmpty()
+                & vornameTf.getText().isEmpty()
+                & nachnameTf.getText().isEmpty()
+                & straßeTf.getText().isEmpty()
+                & hausnummerTf.getText().isEmpty()
+                & plzTf.getText().isEmpty()
+                & ortTf.getText().isEmpty()
+                & telefonnummerTf.getText().isEmpty()
+                & emailTf.getText().isEmpty()
+                & (anredeCB.getValue() == null)
+                & (landCB.getValue() == "Deutschland")
+                & (bundeslandCB.getValue() == null)
+                & telefonnummerTf.getText().isEmpty()
+                & emailTf.getText().isEmpty()
+                & kontoinhaberTf.getText().isEmpty()
+                & ibanTf.getText().isEmpty()
+                & bicTf.getText().isEmpty()
+                & bankTf.getText().isEmpty()
+                & rechnungsadresseRb.isSelected()) {
 
             stage.close();
         } else {
@@ -321,98 +313,98 @@ public class KundenAnlegenController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         //Schreibt die Kunden-ID in das Textfeld
-        kundenIdTextField.textProperty().set(kundenId);
-        HausnummerTextfield.setTextFormatter(new TextFormatter<>(new FilterHausnummer()));
-        HausnummerTextfieldNeu.setTextFormatter(new TextFormatter<>(new FilterHausnummer()));
-        PlzTextfield.setTextFormatter(new TextFormatter<>(new FilterPLZ()));
-        PLZTextfieldNeu.setTextFormatter(new TextFormatter<>(new FilterPLZ()));
-        OrtTextfield.setTextFormatter(new TextFormatter<>(new FilterOrt()));
-        OrtTextfieldNeu.setTextFormatter(new TextFormatter<>(new FilterOrt()));
-        TelefonnummerTextfield.setTextFormatter(new TextFormatter<>(new FilterTelefon()));
-        IbanTextfield.setTextFormatter(new TextFormatter<>(new FilterAlphaNumeric()));
-        BicTextfield.setTextFormatter(new TextFormatter<>(new FilterAlphaNumeric()));
+        kundenIdTf.textProperty().set(kundenId);
+        hausnummerTf.setTextFormatter(new TextFormatter<>(new FilterHausnummer()));
+        hausnummerTfNeu.setTextFormatter(new TextFormatter<>(new FilterHausnummer()));
+        plzTf.setTextFormatter(new TextFormatter<>(new FilterPLZ()));
+        plzTfNeu.setTextFormatter(new TextFormatter<>(new FilterPLZ()));
+        ortTf.setTextFormatter(new TextFormatter<>(new FilterOrt()));
+        ortTfNeu.setTextFormatter(new TextFormatter<>(new FilterOrt()));
+        telefonnummerTf.setTextFormatter(new TextFormatter<>(new FilterTelefon()));
+        ibanTf.setTextFormatter(new TextFormatter<>(new FilterAlphaNumeric()));
+        bicTf.setTextFormatter(new TextFormatter<>(new FilterAlphaNumeric()));
 
         /* Items der Combobox "Anrede" setzen. */
         ObservableList<String> listAnrede = FXCollections.observableArrayList("", "Frau", "Herr");
-        AnredeCB.setItems(listAnrede);
+        anredeCB.setItems(listAnrede);
 
         /* Items der Combobox "Land" */
         ObservableList<String> listLänder = FXCollections.observableArrayList("Deutschland", "Österreich");
-        LandCB.setItems(listLänder);
-        LandCB.setValue("Deutschland");
+        landCB.setItems(listLänder);
+        landCB.setValue("Deutschland");
 
         /* Items der Combobox "Bundesland" */
         ObservableList<String> listBundesLänderDeutsch = FXCollections.observableArrayList("Baden-Würtemberg", "Bayern", "Berlin", "Brandenburg", "Bremen", "Hamburg", "Hessen", "Mecklenburg-Vorpommern", "Niedersachsen", "Nordrhein-Westfalen", "Rheinland-Pfalz", "Saarland", "Sachsen", "Sachsen-Anhalt", "Schleswig-Holstein", "Thüringen");
         ObservableList<String> listBundesLänderÖsterreich = FXCollections.observableArrayList("Burgenland", "Kärnten", "Nieder-österreich", "Ober-österreich", "Salzburg", "Steiermark", "Tirol", "Vorarlberg", "Wien");
-        BundeslandCB.setItems(listBundesLänderDeutsch);
+        bundeslandCB.setItems(listBundesLänderDeutsch);
 
         /* Listener zur Anzeige der Bunsdesländer abhängig vom gewählten Land */
-        LandCB.valueProperty().addListener(new ChangeListener<String>() {
+        landCB.valueProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable,
                     String oldValue, String newValue) {
-                if (LandCB.getValue() == "Deutschland") {
-                    BundeslandCB.setItems(listBundesLänderDeutsch);
+                if (landCB.getValue() == "Deutschland") {
+                    bundeslandCB.setItems(listBundesLänderDeutsch);
                 } else {
-                    BundeslandCB.setItems(listBundesLänderÖsterreich);
+                    bundeslandCB.setItems(listBundesLänderÖsterreich);
                 }
             }
         });
 
         /* Funktionen der Checkbox zum Übernehmen des Kontoinhabers*/
-        KontoCb.setOnAction(e -> {
-            if (KontoCb.isSelected()) {
-                KontoinhaberTextfield.textProperty().bind(FirmennamenTextfield.textProperty());
-                KontoinhaberTextfield.setDisable(true);
+        kontoCb.setOnAction(e -> {
+            if (kontoCb.isSelected()) {
+                kontoinhaberTf.textProperty().bind(firmennamenTf.textProperty());
+                kontoinhaberTf.setDisable(true);
 
             } else {
 
-                KontoinhaberTextfield.setDisable(false);
-                KontoinhaberTextfield.textProperty().unbind();
-                KontoinhaberTextfield.selectAll();
-                KontoinhaberTextfield.requestFocus();
-                KontoinhaberTextfield.setEditable(true);
+                kontoinhaberTf.setDisable(false);
+                kontoinhaberTf.textProperty().unbind();
+                kontoinhaberTf.selectAll();
+                kontoinhaberTf.requestFocus();
+                kontoinhaberTf.setEditable(true);
 
             }
         });
 
         /* Blendet abweichende Lieferanschrift ein */
-        NeueLieferanschriftRb.setOnAction(e -> {
-            if (NeueLieferanschriftRb.isSelected()) {
+        neueLieferanschriftRb.setOnAction(e -> {
+            if (neueLieferanschriftRb.isSelected()) {
 
-                FirmennameLabelNeu.setVisible(true);
-                StraßeLabelNeu.setVisible(true);
-                OrtLabelNeu.setVisible(true);
-                LandLabelNeu.setVisible(true);
-                BundeslandLabelNeu.setVisible(true);
-                StraßeTextfieldNeu.setVisible(true);
-                FirmennamenTextfieldNeu.setVisible(true);
-                FirmennamenTextfieldNeu.requestFocus();
-                HausnummerTextfieldNeu.setVisible(true);
-                PLZTextfieldNeu.setVisible(true);
-                OrtTextfieldNeu.setVisible(true);
-                LandCB1.setVisible(true);
-                BundeslandCB1.setVisible(true);
+                firmennameLabelNeu.setVisible(true);
+                straßeLabelNeu.setVisible(true);
+                ortLabelNeu.setVisible(true);
+                landLabelNeu.setVisible(true);
+                bundeslandLabelNeu.setVisible(true);
+                straßeTfNeu.setVisible(true);
+                firmennamenTfNeu.setVisible(true);
+                firmennamenTfNeu.requestFocus();
+                hausnummerTfNeu.setVisible(true);
+                plzTfNeu.setVisible(true);
+                ortTfNeu.setVisible(true);
+                landCb1.setVisible(true);
+                bundeslandCb1.setVisible(true);
 
-                ScrollpaneKd.setPrefHeight(1100);
-                AnchorpaneKd.setPrefHeight(1100);
+                scrollpaneKd.setPrefHeight(1100);
+                anchorpaneKd.setPrefHeight(1100);
 
-                SpeichernBtn.setLayoutY(1050);
-                AbbrechenBtn.setLayoutY(1050);
+                speichern.setLayoutY(1050);
+                abbrechen.setLayoutY(1050);
 
-                LandCB1.setItems(listLänder);
-                LandCB1.setValue("Deutschland");
+                landCb1.setItems(listLänder);
+                landCb1.setValue("Deutschland");
 
-                BundeslandCB1.setItems(listBundesLänderDeutsch);
+                bundeslandCb1.setItems(listBundesLänderDeutsch);
 
-                LandCB1.valueProperty().addListener(new ChangeListener<String>() {
+                landCb1.valueProperty().addListener(new ChangeListener<String>() {
                     @Override
                     public void changed(ObservableValue<? extends String> observable,
                             String oldValue, String newValue) {
-                        if (LandCB1.getValue() == "Deutschland") {
-                            BundeslandCB1.setItems(listBundesLänderDeutsch);
+                        if (landCb1.getValue() == "Deutschland") {
+                            bundeslandCb1.setItems(listBundesLänderDeutsch);
                         } else {
-                            BundeslandCB1.setItems(listBundesLänderÖsterreich);
+                            bundeslandCb1.setItems(listBundesLänderÖsterreich);
                         }
                     }
                 });
@@ -422,21 +414,21 @@ public class KundenAnlegenController implements Initializable {
 
         /* Übernimmt die Rechnungsadresse und deaktiviert die Felder 
         für die abweichende Adresse */
-        RechnungsadresseRb.setOnAction(e -> {
-            if (RechnungsadresseRb.isSelected()) {
+        rechnungsadresseRb.setOnAction(e -> {
+            if (rechnungsadresseRb.isSelected()) {
 
-                FirmennameLabelNeu.setVisible(false);
-                StraßeLabelNeu.setVisible(false);
-                OrtLabelNeu.setVisible(false);
-                LandLabelNeu.setVisible(false);
-                BundeslandLabelNeu.setVisible(false);
-                StraßeTextfieldNeu.setVisible(false);
-                FirmennamenTextfieldNeu.setVisible(false);
-                HausnummerTextfieldNeu.setVisible(false);
-                PLZTextfieldNeu.setVisible(false);
-                OrtTextfieldNeu.setVisible(false);
-                LandCB1.setVisible(false);
-                BundeslandCB1.setVisible(false);
+                firmennameLabelNeu.setVisible(false);
+                straßeLabelNeu.setVisible(false);
+                ortLabelNeu.setVisible(false);
+                landLabelNeu.setVisible(false);
+                bundeslandLabelNeu.setVisible(false);
+                straßeTfNeu.setVisible(false);
+                firmennamenTfNeu.setVisible(false);
+                hausnummerTfNeu.setVisible(false);
+                plzTfNeu.setVisible(false);
+                ortTfNeu.setVisible(false);
+                landCb1.setVisible(false);
+                bundeslandCb1.setVisible(false);
                 bundeslandNeuMeldung.setText("");
                 ortNeuMeldung.setText("");
                 plzNeuMeldung.setText("");
@@ -444,23 +436,23 @@ public class KundenAnlegenController implements Initializable {
                 straßeNeuMeldung.setText("");
                 firmennameNeuMeldung.setText("");
 
-                ScrollpaneKd.setPrefHeight(900);
-                AnchorpaneKd.setPrefHeight(900);
+                scrollpaneKd.setPrefHeight(900);
+                anchorpaneKd.setPrefHeight(900);
 
-                AbbrechenBtn.setLayoutY(847);
-                SpeichernBtn.setLayoutY(847);
+                abbrechen.setLayoutY(847);
+                speichern.setLayoutY(847);
 
             }
         });
 
-        SpeichernBtn.setOnAction((ActionEvent event) -> {
+        speichern.setOnAction((ActionEvent event) -> {
             boolean formIsValid = validateForm();
             Alert meldung = new Alert(Alert.AlertType.INFORMATION, INFORMATION_TEXT, ButtonType.OK);
 
             meldung.setHeaderText("");
 //            meldung.setTitle(CONFIRMATION_TITLE);
 
-            if (FirmennamenTextfield.getText().isEmpty() || StraßeTextfield.getText().isEmpty() || HausnummerTextfield.getText().isEmpty() || PlzTextfield.getText().isEmpty() || OrtTextfield.getText().isEmpty() || (BundeslandCB.getValue() == null) || TelefonnummerTextfield.getText().isEmpty() || NeueLieferanschriftRb.isSelected()) {
+            if (firmennamenTf.getText().isEmpty() || straßeTf.getText().isEmpty() || hausnummerTf.getText().isEmpty() || plzTf.getText().isEmpty() || ortTf.getText().isEmpty() || (bundeslandCB.getValue() == null) || telefonnummerTf.getText().isEmpty() || neueLieferanschriftRb.isSelected()) {
 
                 meldung.showAndWait();
             }
@@ -501,45 +493,52 @@ public class KundenAnlegenController implements Initializable {
 
     }
 
+    // Kontroliert das Formular auf Vollständigkeit und Korrektheit.
     private boolean validateForm() {
 
         boolean validate = true;
 
-        if (NeueLieferanschriftRb.isSelected()) {
+        if (neueLieferanschriftRb.isSelected()) {
 
-            if (BundeslandCB1.getValue() == null) {
+            if (bundeslandCb1.getValue() == null) {
 
                 bundeslandNeuMeldung.setText(FEHLER_KEIN_BUNDESLAND);
-                BundeslandCB1.requestFocus();
+                bundeslandCb1.requestFocus();
 
                 validate = false;
 
             } else {
                 bundeslandNeuMeldung.setText("");
 
-                validate = true;
+                if (validate != false) {
+
+                    validate = true;
+                }
             }
-            if (OrtTextfieldNeu.getText().isEmpty()) {
+            if (ortTfNeu.getText().isEmpty()) {
 
                 ortNeuMeldung.setText(FEHLER_KEIN_ORT);
-                OrtTextfieldNeu.requestFocus();
+                ortTfNeu.requestFocus();
 
                 validate = false;
 
             } else {
                 ortNeuMeldung.setText("");
 
-                validate = true;
+                if (validate != false) {
+
+                    validate = true;
+                }
             }
-            if (PLZTextfieldNeu.getText().isEmpty()) {
+            if (plzTfNeu.getText().isEmpty()) {
 
                 plzNeuMeldung.setText(FEHLER_KEINE_PLZ);
-                PLZTextfieldNeu.requestFocus();
+                plzTfNeu.requestFocus();
 
                 validate = false;
 
             } else {
-                if (!PLZTextfieldNeu.getText().matches("[0-9]{5}")) {
+                if (!plzTfNeu.getText().matches("[0-9]{5}")) {
 
                     plzNeuMeldung.setText(FEHLER_KEINE_GÜLTIGE_PLZ);
 
@@ -548,38 +547,47 @@ public class KundenAnlegenController implements Initializable {
 
                     plzNeuMeldung.setText("");
 
-                    validate = true;
+                    if (validate != false) {
+
+                        validate = true;
+                    }
                 }
             }
-            if (HausnummerTextfieldNeu.getText().isEmpty()) {
+            if (hausnummerTfNeu.getText().isEmpty()) {
 
                 hausnummerNeuMeldung.setText(FEHLER_KEINE_HAUSNUMMER);
-                HausnummerTextfieldNeu.requestFocus();
+                hausnummerTfNeu.requestFocus();
 
                 validate = false;
 
             } else {
                 hausnummerNeuMeldung.setText("");
 
-                validate = true;
+                if (validate != false) {
 
+                    validate = true;
+
+                }
             }
-            if (StraßeTextfieldNeu.getText().isEmpty()) {
+            if (straßeTfNeu.getText().isEmpty()) {
 
                 straßeNeuMeldung.setText(FEHLER_KEINE_STRASSE);
-                StraßeTextfieldNeu.requestFocus();
+                straßeTfNeu.requestFocus();
 
                 validate = false;
 
             } else {
                 straßeNeuMeldung.setText("");
 
-                validate = true;
+                if (validate != false) {
+
+                    validate = true;
+                }
             }
-            if (FirmennamenTextfieldNeu.getText().isEmpty()) {
+            if (firmennamenTfNeu.getText().isEmpty()) {
 
                 firmennameNeuMeldung.setText(FEHLER_KEIN_FIRMENNAME);
-                FirmennamenTextfieldNeu.requestFocus();
+                firmennamenTfNeu.requestFocus();
 
                 validate = false;
 
@@ -587,27 +595,37 @@ public class KundenAnlegenController implements Initializable {
 
                 firmennameNeuMeldung.setText("");
 
+                if (validate != false) {
+
+                    validate = true;
+                }
+            }
+        }
+
+        if (rechnungsadresseRb.isSelected()) {
+
+            bundeslandNeuMeldung.setText("");
+            ortNeuMeldung.setText("");
+            plzNeuMeldung.setText("");
+            hausnummerNeuMeldung.setText("");
+            straßeNeuMeldung.setText("");
+            firmennameNeuMeldung.setText("");
+
+            if (validate != false) {
+
                 validate = true;
             }
         }
-        
-        if (RechnungsadresseRb.isSelected()) {
-            
-             bundeslandNeuMeldung.setText("");
-             ortNeuMeldung.setText("");
-             plzNeuMeldung.setText("");
-             hausnummerNeuMeldung.setText("");
-             straßeNeuMeldung.setText("");
-             firmennameNeuMeldung.setText("");
-             
-             validate = true;
-        }
 
-        if (BicTextfield.getText().isEmpty() || BicTextfield.getText().matches("([A-Z]{4}DE[A-Z2-9]{1}[A-NP-Z0-2]{1}\\w{3})|([A-Z]{4}DE[A-Z2-9]{1}[A-NP-Z0-2]{1})") || BicTextfield.getText().matches("([A-Z]{4}AT[A-Z2-9]{1}[A-NP-Z0-2]{1}\\w{3})|([A-Z]{4}DE[A-Z2-9]{1}[A-NP-Z0-2]{1})")) {
+        if (bicTf.getText().isEmpty() || bicTf.getText().matches("([A-Z]{4}DE[A-Z2-9]{1}[A-NP-Z0-2]{1}\\w{3})|([A-Z]{4}DE[A-Z2-9]{1}[A-NP-Z0-2]{1})") || bicTf.getText().matches("([A-Z]{4}AT[A-Z2-9]{1}[A-NP-Z0-2]{1}\\w{3})|([A-Z]{4}DE[A-Z2-9]{1}[A-NP-Z0-2]{1})")) {
             bicMeldung.setText("");
-            BicTextfield.requestFocus();
+            bicTf.requestFocus();
 
-            validate = true;
+            if (validate != false) {
+
+                validate = true;
+
+            }
 
         } else {
             bicMeldung.setText(FEHLER_KEINE_GÜLTIGE_BIC);
@@ -615,11 +633,15 @@ public class KundenAnlegenController implements Initializable {
             validate = false;
         }
 
-        if (IbanTextfield.getText().isEmpty() || IbanTextfield.getText().matches("DE[0-9]{20}") || IbanTextfield.getText().matches("AT[0-9]{18}")) {
+        if (ibanTf.getText().isEmpty() || ibanTf.getText().matches("DE[0-9]{20}") || ibanTf.getText().matches("AT[0-9]{18}")) {
             ibanMeldung.setText("");
-            IbanTextfield.requestFocus();
+            ibanTf.requestFocus();
 
-            validate = true;
+            if (validate != false) {
+
+                validate = true;
+
+            }
 
         } else {
             ibanMeldung.setText(FEHLER_KEINE_GÜLTIGE_IBAN);
@@ -627,27 +649,29 @@ public class KundenAnlegenController implements Initializable {
             validate = false;
         }
 
-        if (EmailTextfield.getText().isEmpty() || EmailTextfield.getText().matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+" + "[.]{1}" + "[a-zA-Z]{2,3}")) {
+        if (emailTf.getText().isEmpty() || emailTf.getText().matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+" + "[.]{1}" + "[a-zA-Z]{2,3}")) {
             emailMeldung.setText("");
-            EmailTextfield.requestFocus();
+            emailTf.requestFocus();
 
-            validate = true;
+            if (validate != false) {
 
+                validate = true;
+            }
         } else {
             emailMeldung.setText(FEHLER_KEINE_GÜLTIGE_EMAIL);
 
             validate = false;
         }
 
-        if (TelefonnummerTextfield.getText().isEmpty()) {
+        if (telefonnummerTf.getText().isEmpty()) {
 
             telefonnummerMeldung.setText(FEHLER_KEINE_TELEFONNUMMER);
-            TelefonnummerTextfield.requestFocus();
+            telefonnummerTf.requestFocus();
 
             validate = false;
 
         } else {
-            if (!TelefonnummerTextfield.getText().matches("[0+]{1}[0-9-+ /]+")) {
+            if (!telefonnummerTf.getText().matches("[0+]{1}[0-9-+ /]+")) {
 
                 telefonnummerMeldung.setText(FEHLER_KEINE_GÜLTIGE_TELEFONNUMMER);
 
@@ -656,45 +680,54 @@ public class KundenAnlegenController implements Initializable {
             } else {
                 telefonnummerMeldung.setText("");
 
-                validate = true;
+                if (validate != false) {
+
+                    validate = true;
+                }
             }
         }
 
-        if (BundeslandCB.getValue() == null) {
+        if (bundeslandCB.getValue() == null) {
 
             bundeslandMeldung.setText(FEHLER_KEIN_BUNDESLAND);
-            BundeslandCB.requestFocus();
+            bundeslandCB.requestFocus();
 
             validate = false;
 
         } else {
             bundeslandMeldung.setText("");
 
-            validate = true;
+            if (validate != false) {
+
+                validate = true;
+            }
         }
 
-        if (OrtTextfield.getText().isEmpty()) {
+        if (ortTf.getText().isEmpty()) {
 
             ortMeldung.setText(FEHLER_KEIN_ORT);
-            OrtTextfield.requestFocus();
+            ortTf.requestFocus();
 
             validate = false;
 
         } else {
             ortMeldung.setText("");
 
-            validate = true;
+            if (validate != false) {
+
+                validate = true;
+            }
         }
 
-        if (PlzTextfield.getText().isEmpty()) {
+        if (plzTf.getText().isEmpty()) {
 
             plzMeldung.setText(FEHLER_KEINE_PLZ);
-            PlzTextfield.requestFocus();
+            plzTf.requestFocus();
 
             validate = false;
 
         } else {
-            if (!PlzTextfield.getText().matches("[0-9]{5}")) {
+            if (!plzTf.getText().matches("[0-9]{5}")) {
 
                 plzMeldung.setText(FEHLER_KEINE_GÜLTIGE_PLZ);
 
@@ -703,41 +736,50 @@ public class KundenAnlegenController implements Initializable {
 
                 plzMeldung.setText("");
 
-                validate = true;
+                if (validate != false) {
+
+                    validate = true;
+                }
             }
         }
 
-        if (HausnummerTextfield.getText().isEmpty()) {
+        if (hausnummerTf.getText().isEmpty()) {
 
             hausnummerMeldung.setText(FEHLER_KEINE_HAUSNUMMER);
-            HausnummerTextfield.requestFocus();
+            hausnummerTf.requestFocus();
 
             validate = false;
 
         } else {
             hausnummerMeldung.setText("");
 
-            validate = true;
+            if (validate != false) {
 
+                validate = true;
+
+            }
         }
 
-        if (StraßeTextfield.getText().isEmpty()) {
+        if (straßeTf.getText().isEmpty()) {
 
             straßeMeldung.setText(FEHLER_KEINE_STRASSE);
-            StraßeTextfield.requestFocus();
+            straßeTf.requestFocus();
 
             validate = false;
 
         } else {
             straßeMeldung.setText("");
 
-            validate = true;
+            if (validate != false) {
+
+                validate = true;
+            }
         }
 
-        if (FirmennamenTextfield.getText().isEmpty()) {
+        if (firmennamenTf.getText().isEmpty()) {
 
             firmennameMeldung.setText(FEHLER_KEIN_FIRMENNAME);
-            FirmennamenTextfield.requestFocus();
+            firmennamenTf.requestFocus();
 
             validate = false;
 
@@ -745,7 +787,10 @@ public class KundenAnlegenController implements Initializable {
 
             firmennameMeldung.setText("");
 
-            validate = true;
+            if (validate != false) {
+
+                validate = true;
+            }
         }
 
         return validate;

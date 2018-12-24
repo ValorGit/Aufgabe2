@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fx:id="ScrollpaneKd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aufgabe02.KundenAnlegenController">
+<ScrollPane fx:id="scrollpaneKd" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="aufgabe02.KundenAnlegenController">
    <content>
-      <AnchorPane fx:id="AnchorpaneKd" minHeight="-Infinity" minWidth="-Infinity" prefHeight="892.0" prefWidth="648.0">
+      <AnchorPane fx:id="anchorpaneKd" minHeight="-Infinity" minWidth="-Infinity" prefHeight="892.0" prefWidth="665.0">
          <children>
             <Label layoutX="14.0" layoutY="14.0" text="Kunden anlegen" textAlignment="RIGHT" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
                <font>
@@ -30,69 +30,69 @@
                   <Insets />
                </opaqueInsets>
             </Label>
-            <TextField fx:id="kundenIdTextField" disable="true" layoutX="209.0" layoutY="47.0" prefHeight="27.0" prefWidth="231.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="47.0" />
+            <TextField fx:id="kundenIdTf" disable="true" layoutX="209.0" layoutY="47.0" prefHeight="27.0" prefWidth="231.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="47.0" />
             <Label contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="110.0" layoutY="90.0" prefHeight="27.0" prefWidth="83.0" text="Firmenname*" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="90.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="FirmennamenTextfield" layoutX="215.0" layoutY="90.0" prefHeight="27.0" prefWidth="231.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="90.0" />
+            <TextField fx:id="firmennamenTf" layoutX="215.0" layoutY="90.0" prefHeight="27.0" prefWidth="231.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="90.0" />
             <Label contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="110.0" layoutY="130.0" prefHeight="20.0" prefWidth="46.0" text="Anrede" textAlignment="RIGHT" AnchorPane.leftAnchor="149.0" AnchorPane.topAnchor="130.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="AnredeCB" layoutX="215.0" layoutY="138.0" prefHeight="25.0" prefWidth="115.0" AnchorPane.topAnchor="127.0" />
+            <ComboBox fx:id="anredeCB" layoutX="215.0" layoutY="138.0" prefHeight="25.0" prefWidth="115.0" AnchorPane.topAnchor="127.0" />
             <Label contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="110.0" layoutY="171.0" text="Vorname" AnchorPane.leftAnchor="138.0" AnchorPane.topAnchor="170.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="VornameTextfield" prefHeight="27.0" prefWidth="171.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="167.0" />
+            <TextField fx:id="vornameTf" prefHeight="27.0" prefWidth="171.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="167.0" />
             <Label contentDisplay="RIGHT" graphicTextGap="20.0" text="Nachname" AnchorPane.leftAnchor="128.0" AnchorPane.topAnchor="210.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="NachnameTextfield" prefHeight="25.0" prefWidth="171.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="207.0" />
+            <TextField fx:id="nachnameTf" prefHeight="25.0" prefWidth="171.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="207.0" />
             <Label contentDisplay="RIGHT" graphicTextGap="20.0" text="Straße / Hausnummer*" AnchorPane.leftAnchor="53.0" AnchorPane.topAnchor="250.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="StraßeTextfield" prefHeight="25.0" prefWidth="197.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="247.0" />
-            <TextField fx:id="HausnummerTextfield" layoutX="420.0" layoutY="248.0" prefHeight="25.0" prefWidth="65.0" AnchorPane.leftAnchor="420.0" AnchorPane.topAnchor="248.0" />
+            <TextField fx:id="straßeTf" prefHeight="25.0" prefWidth="197.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="247.0" />
+            <TextField fx:id="hausnummerTf" layoutX="420.0" layoutY="248.0" prefHeight="25.0" prefWidth="65.0" AnchorPane.leftAnchor="420.0" AnchorPane.topAnchor="248.0" />
             <Label contentDisplay="RIGHT" graphicTextGap="20.0" text="PLZ / Ort*" AnchorPane.leftAnchor="133.0" AnchorPane.topAnchor="290.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="PlzTextfield" prefHeight="25.0" prefWidth="90.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="287.0" />
-            <TextField fx:id="OrtTextfield" layoutX="312.0" layoutY="287.0" prefHeight="25.0" prefWidth="171.0" AnchorPane.topAnchor="288.0" />
+            <TextField fx:id="plzTf" prefHeight="25.0" prefWidth="90.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="287.0" />
+            <TextField fx:id="ortTf" layoutX="312.0" layoutY="287.0" prefHeight="25.0" prefWidth="171.0" AnchorPane.topAnchor="288.0" />
             <Label contentDisplay="RIGHT" graphicTextGap="20.0" text="Land*" AnchorPane.leftAnchor="159.0" AnchorPane.topAnchor="330.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="LandCB" prefHeight="25.0" prefWidth="171.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="327.0" />
+            <ComboBox fx:id="landCB" prefHeight="25.0" prefWidth="171.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="327.0" />
             <Label contentDisplay="RIGHT" graphicTextGap="20.0" text="Bundesland*" AnchorPane.leftAnchor="119.0" AnchorPane.topAnchor="370.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="BundeslandCB" prefHeight="25.0" prefWidth="203.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="367.0" />
+            <ComboBox fx:id="bundeslandCB" prefHeight="25.0" prefWidth="203.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="367.0" />
             <Label contentDisplay="RIGHT" graphicTextGap="20.0" text="Telefonnummer*" AnchorPane.leftAnchor="91.0" AnchorPane.topAnchor="410.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="TelefonnummerTextfield" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="407.0" />
+            <TextField fx:id="telefonnummerTf" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="407.0" />
             <Label contentDisplay="RIGHT" graphicTextGap="20.0" text="E-Mail" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="450.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="EmailTextfield" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="447.0" />
+            <TextField fx:id="emailTf" prefHeight="25.0" prefWidth="205.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="447.0" />
             <Separator layoutX="10.0" layoutY="490.0" prefHeight="3.0" prefWidth="620.0" />
             <Label layoutX="10.0" layoutY="497.0" text="Bankverbindung" textAlignment="RIGHT" AnchorPane.topAnchor="500.0">
                <font>
@@ -104,26 +104,26 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="KontoinhaberTextfield" layoutX="215.0" layoutY="543.0" prefHeight="25.0" prefWidth="231.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="543.0" />
-            <CheckBox fx:id="KontoCb" layoutX="466.0" layoutY="547.0" mnemonicParsing="false" text="Wie Kunde" />
+            <TextField fx:id="kontoinhaberTf" layoutX="215.0" layoutY="543.0" prefHeight="25.0" prefWidth="231.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="543.0" />
+            <CheckBox fx:id="kontoCb" layoutX="466.0" layoutY="547.0" mnemonicParsing="false" text="Wie Kunde" />
             <Label contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="122.0" layoutY="575.0" text="IBAN" AnchorPane.leftAnchor="163.0" AnchorPane.topAnchor="585.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="IbanTextfield" layoutX="215.0" layoutY="583.0" prefHeight="25.0" prefWidth="186.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="583.0" />
+            <TextField fx:id="ibanTf" layoutX="215.0" layoutY="583.0" prefHeight="25.0" prefWidth="186.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="583.0" />
             <Label contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="143.0" layoutY="543.0" text="BIC" AnchorPane.leftAnchor="174.0" AnchorPane.topAnchor="625.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="BicTextfield" layoutX="215.0" layoutY="623.0" prefHeight="25.0" prefWidth="186.0" />
+            <TextField fx:id="bicTf" layoutX="215.0" layoutY="623.0" prefHeight="25.0" prefWidth="186.0" />
             <Label contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="143.0" layoutY="543.0" text="Bank" AnchorPane.leftAnchor="164.0" AnchorPane.topAnchor="665.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="BankTextfield" layoutX="215.0" layoutY="663.0" prefHeight="25.0" prefWidth="231.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="663.0" />
+            <TextField fx:id="bankTf" layoutX="215.0" layoutY="663.0" prefHeight="25.0" prefWidth="231.0" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="663.0" />
             <Separator layoutX="10.0" layoutY="703.0" prefHeight="3.0" prefWidth="620.0" />
             <Label layoutX="10.0" layoutY="714.0" text="Lieferadresse" textAlignment="RIGHT" AnchorPane.topAnchor="720.0">
                <font>
@@ -135,125 +135,125 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <RadioButton fx:id="RechnungsadresseRb" layoutX="217.0" layoutY="767.0" mnemonicParsing="false" selected="true" text="Rechnungsadresse">
+            <RadioButton fx:id="rechnungsadresseRb" layoutX="217.0" layoutY="767.0" mnemonicParsing="false" selected="true" text="Rechnungsadresse">
                <toggleGroup>
                   <ToggleGroup fx:id="Versand" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="NeueLieferanschriftRb" layoutX="217.0" layoutY="797.0" mnemonicParsing="false" text="abweichende Lieferanschrift" toggleGroup="$Versand" AnchorPane.topAnchor="797.0" />
-            <Label fx:id="FirmennameLabelNeu" contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="108.0" layoutY="835.0" prefHeight="27.0" prefWidth="83.0" text="Firmenname*" visible="false" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="835.0">
+            <RadioButton fx:id="neueLieferanschriftRb" layoutX="217.0" layoutY="797.0" mnemonicParsing="false" text="abweichende Lieferanschrift" toggleGroup="$Versand" AnchorPane.topAnchor="797.0" />
+            <Label fx:id="firmennameLabelNeu" contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="108.0" layoutY="835.0" prefHeight="27.0" prefWidth="83.0" text="Firmenname*" visible="false" AnchorPane.leftAnchor="112.0" AnchorPane.topAnchor="835.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="FirmennamenTextfieldNeu" layoutX="207.0" layoutY="835.0" prefHeight="27.0" prefWidth="231.0" visible="false" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="835.0" />
-            <Label fx:id="StraßeLabelNeu" contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="55.0" layoutY="871.0" text="Straße / Hausnummer*" visible="false" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="875.0">
+            <TextField fx:id="firmennamenTfNeu" layoutX="207.0" layoutY="835.0" prefHeight="27.0" prefWidth="231.0" visible="false" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="835.0" />
+            <Label fx:id="straßeLabelNeu" contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="55.0" layoutY="871.0" text="Straße / Hausnummer*" visible="false" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="875.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="StraßeTextfieldNeu" layoutX="215.0" layoutY="873.0" prefHeight="25.0" prefWidth="197.0" visible="false" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="873.0" />
-            <TextField fx:id="HausnummerTextfieldNeu" layoutX="420.0" layoutY="873.0" prefHeight="25.0" prefWidth="65.0" visible="false" />
-            <Label fx:id="OrtLabelNeu" contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="133.0" layoutY="907.0" text="PLZ / Ort*" visible="false" AnchorPane.topAnchor="915.0">
+            <TextField fx:id="straßeTfNeu" layoutX="215.0" layoutY="873.0" prefHeight="25.0" prefWidth="197.0" visible="false" AnchorPane.leftAnchor="215.0" AnchorPane.topAnchor="873.0" />
+            <TextField fx:id="hausnummerTfNeu" layoutX="420.0" layoutY="873.0" prefHeight="25.0" prefWidth="65.0" visible="false" />
+            <Label fx:id="ortLabelNeu" contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="133.0" layoutY="907.0" text="PLZ / Ort*" visible="false" AnchorPane.topAnchor="915.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="PLZTextfieldNeu" layoutX="217.0" layoutY="913.0" prefHeight="25.0" prefWidth="90.0" visible="false" AnchorPane.leftAnchor="215.0" />
-            <TextField fx:id="OrtTextfieldNeu" layoutX="312.0" layoutY="913.0" prefHeight="25.0" prefWidth="173.0" visible="false" AnchorPane.leftAnchor="312.0" AnchorPane.topAnchor="913.0" />
-            <Label fx:id="LandLabelNeu" contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="159.0" layoutY="951.0" text="Land*" visible="false" AnchorPane.topAnchor="955.0">
+            <TextField fx:id="plzTfNeu" layoutX="217.0" layoutY="913.0" prefHeight="25.0" prefWidth="90.0" visible="false" AnchorPane.leftAnchor="215.0" />
+            <TextField fx:id="ortTfNeu" layoutX="312.0" layoutY="913.0" prefHeight="25.0" prefWidth="173.0" visible="false" AnchorPane.leftAnchor="312.0" AnchorPane.topAnchor="913.0" />
+            <Label fx:id="landLabelNeu" contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="159.0" layoutY="951.0" text="Land*" visible="false" AnchorPane.topAnchor="955.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="LandCB1" layoutX="215.0" layoutY="953.0" prefHeight="25.0" prefWidth="171.0" visible="false" />
-            <Label fx:id="BundeslandLabelNeu" contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="119.0" layoutY="991.0" text="Bundesland*" visible="false" AnchorPane.leftAnchor="119.0" AnchorPane.topAnchor="995.0">
+            <ComboBox fx:id="landCb1" layoutX="215.0" layoutY="953.0" prefHeight="25.0" prefWidth="171.0" visible="false" />
+            <Label fx:id="bundeslandLabelNeu" contentDisplay="RIGHT" graphicTextGap="20.0" layoutX="119.0" layoutY="991.0" text="Bundesland*" visible="false" AnchorPane.leftAnchor="119.0" AnchorPane.topAnchor="995.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <ComboBox fx:id="BundeslandCB1" layoutX="215.0" layoutY="993.0" prefHeight="25.0" prefWidth="203.0" visible="false" />
-            <Button fx:id="AbbrechenBtn" cancelButton="true" layoutX="506.0" layoutY="850.0" mnemonicParsing="false" onAction="#handleCloseButtonAction" prefHeight="30.0" prefWidth="100.0" text="Abbrechen" AnchorPane.leftAnchor="506.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Button>
-            <Button fx:id="SpeichernBtn" layoutX="386.0" layoutY="850.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Speichern" AnchorPane.leftAnchor="386.0">
+            <ComboBox fx:id="bundeslandCb1" layoutX="215.0" layoutY="993.0" prefHeight="25.0" prefWidth="203.0" visible="false" />
+            <Button fx:id="abbrechen" cancelButton="true" layoutX="506.0" layoutY="850.0" mnemonicParsing="false" onAction="#handleCloseButtonAction" prefHeight="30.0" prefWidth="100.0" text="Abbrechen" AnchorPane.leftAnchor="506.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Label fx:id="firmennameMeldung" layoutX="453.0" layoutY="96.0" prefHeight="15.0" prefWidth="172.0" textFill="#ee1616" AnchorPane.leftAnchor="453.0">
+            <Button fx:id="speichern" layoutX="386.0" layoutY="850.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" text="Speichern" AnchorPane.leftAnchor="386.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label fx:id="firmennameMeldung" layoutX="453.0" layoutY="96.0" prefHeight="15.0" prefWidth="207.0" textFill="#ee1616" AnchorPane.leftAnchor="451.0" AnchorPane.topAnchor="96.0">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
-            <Label fx:id="straßeMeldung" layoutX="492.0" layoutY="242.0" prefHeight="17.0" prefWidth="138.0" textFill="#ee1616" AnchorPane.leftAnchor="490.0" AnchorPane.topAnchor="242.0">
+            <Label fx:id="straßeMeldung" layoutX="492.0" layoutY="242.0" prefHeight="17.0" prefWidth="168.0" textFill="#ee1616" AnchorPane.leftAnchor="490.0" AnchorPane.topAnchor="242.0">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
-            <Label fx:id="hausnummerMeldung" layoutX="492.0" layoutY="262.0" prefHeight="15.0" prefWidth="142.0" textFill="#ee1616" AnchorPane.leftAnchor="490.0">
+            <Label fx:id="hausnummerMeldung" layoutX="492.0" layoutY="262.0" prefHeight="15.0" prefWidth="171.0" textFill="#ee1616" AnchorPane.leftAnchor="490.0">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
-            <Label fx:id="plzMeldung" layoutX="487.0" layoutY="283.0" prefHeight="15.0" prefWidth="145.0" textFill="#ee1616">
+            <Label fx:id="plzMeldung" layoutX="487.0" layoutY="283.0" prefHeight="15.0" prefWidth="166.0" textFill="#ee1616" AnchorPane.leftAnchor="490.0">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
-            <Label fx:id="ortMeldung" layoutX="488.0" layoutY="303.0" prefHeight="15.0" prefWidth="144.0" textFill="#ee1616">
+            <Label fx:id="ortMeldung" layoutX="488.0" layoutY="303.0" prefHeight="15.0" prefWidth="166.0" textFill="#ee1616" AnchorPane.leftAnchor="490.0">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
-            <Label fx:id="bundeslandMeldung" layoutX="424.0" layoutY="373.0" prefHeight="15.0" prefWidth="200.0" textFill="#ee1616" AnchorPane.leftAnchor="424.0" AnchorPane.topAnchor="373.0">
+            <Label fx:id="bundeslandMeldung" layoutX="424.0" layoutY="373.0" prefHeight="15.0" prefWidth="200.0" textFill="#ee1616" AnchorPane.leftAnchor="424.0" AnchorPane.topAnchor="372.0">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
-            <Label fx:id="telefonnummerMeldung" layoutX="368.0" layoutY="412.0" prefHeight="15.0" prefWidth="238.0" textFill="#ee1616">
+            <Label fx:id="telefonnummerMeldung" layoutX="368.0" layoutY="412.0" prefHeight="15.0" prefWidth="238.0" textFill="#ee1616" AnchorPane.leftAnchor="369.0">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
-            <Label fx:id="emailMeldung" layoutX="368.0" layoutY="452.0" prefHeight="15.0" prefWidth="213.0" textFill="#ee1616" AnchorPane.leftAnchor="370.0" AnchorPane.topAnchor="452.0">
+            <Label fx:id="emailMeldung" layoutX="434.0" layoutY="452.0" prefHeight="15.0" prefWidth="213.0" textFill="#ee1616" AnchorPane.leftAnchor="425.0" AnchorPane.topAnchor="452.0">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
-            <Label fx:id="ibanMeldung" layoutX="406.0" layoutY="587.0" prefHeight="15.0" prefWidth="219.0" textFill="#ee1616">
+            <Label fx:id="ibanMeldung" layoutX="406.0" layoutY="587.0" prefHeight="15.0" prefWidth="219.0" textFill="#ee1616" AnchorPane.leftAnchor="406.0">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
-            <Label fx:id="bicMeldung" layoutX="404.0" layoutY="627.0" prefHeight="15.0" prefWidth="225.0" textFill="#ee1616">
+            <Label fx:id="bicMeldung" layoutX="404.0" layoutY="627.0" prefHeight="15.0" prefWidth="225.0" textFill="#ee1616" AnchorPane.leftAnchor="406.0">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
-            <Label fx:id="firmennameNeuMeldung" layoutX="452.0" layoutY="840.0" prefHeight="15.0" prefWidth="178.0" textFill="#ee1616" AnchorPane.leftAnchor="451.0" AnchorPane.topAnchor="840.0">
+            <Label fx:id="firmennameNeuMeldung" layoutX="452.0" layoutY="840.0" prefHeight="15.0" prefWidth="203.0" textFill="#ee1616" AnchorPane.leftAnchor="451.0" AnchorPane.topAnchor="840.0">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
-            <Label fx:id="straßeNeuMeldung" layoutX="492.0" layoutY="865.0" prefHeight="15.0" prefWidth="147.0" textFill="#ee1616" AnchorPane.leftAnchor="492.0" AnchorPane.topAnchor="867.0">
+            <Label fx:id="straßeNeuMeldung" layoutX="492.0" layoutY="865.0" prefHeight="15.0" prefWidth="166.0" textFill="#ee1616" AnchorPane.leftAnchor="492.0" AnchorPane.topAnchor="867.0">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
-            <Label fx:id="hausnummerNeuMeldung" layoutX="492.0" layoutY="887.0" prefHeight="15.0" prefWidth="144.0" textFill="#ee1616" AnchorPane.leftAnchor="492.0" AnchorPane.topAnchor="887.0">
+            <Label fx:id="hausnummerNeuMeldung" layoutX="492.0" layoutY="887.0" prefHeight="15.0" prefWidth="169.0" textFill="#ee1616" AnchorPane.leftAnchor="492.0" AnchorPane.topAnchor="887.0">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
-            <Label fx:id="plzNeuMeldung" layoutX="487.0" layoutY="908.0" prefHeight="15.0" prefWidth="145.0" textFill="#ee1616" AnchorPane.leftAnchor="492.0" AnchorPane.topAnchor="907.0">
+            <Label fx:id="plzNeuMeldung" layoutX="487.0" layoutY="908.0" prefHeight="15.0" prefWidth="166.0" textFill="#ee1616" AnchorPane.leftAnchor="492.0" AnchorPane.topAnchor="907.0">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
-            <Label fx:id="ortNeuMeldung" layoutX="492.0" layoutY="928.0" prefHeight="15.0" prefWidth="145.0" textFill="#ee1616" AnchorPane.leftAnchor="492.0" AnchorPane.topAnchor="927.0">
+            <Label fx:id="ortNeuMeldung" layoutX="492.0" layoutY="930.0" prefHeight="12.0" prefWidth="163.0" textFill="#ee1616" AnchorPane.leftAnchor="492.0" AnchorPane.topAnchor="930.0">
                <font>
                   <Font size="10.0" />
                </font>

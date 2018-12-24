@@ -36,21 +36,22 @@ import javafx.util.converter.IntegerStringConverter;
 
 /**
  * Zeigt das Fenster zum Anlegen neuer Aufträge an.
- * @author Alexander Dünne
+ *
+ * @author Alexander Dünne, Jürgen Christl
  */
 public class AuftragAnlegenController implements Initializable {
 
     // Variablen deklarieren
     private MainApp mainApp;
-    
+
     private static final String FEHLER_KEIN_KUNDE = "Bitte geben Sie einen Auftraggeber ein.";
 
     private static final String FEHLER_KEINE_BESTELLNUMMER = "Bitte geben Sie eine Bestellnummer ein.";
 
     private static final String FEHLER_KEINE_GÜLTIGE_BESTELLNUMMER = "Bitte geben Sie eine gültige Bestellnummer ein.";
-    
+
     private static final String FEHLER_DATUM = "Der eingebene Wert liegt in der Vergangenheit.";
-    
+
     private static final String INFORMATION_TEXT = "Bitte füllen Sie die mit * markierten Pflichtfelder aus.";
 
     @FXML
@@ -60,17 +61,17 @@ public class AuftragAnlegenController implements Initializable {
     private Button speichernBtn;
 
     @FXML
-    private MenuItem ProzessMenuItem;
+    private MenuItem prozessMenuItem;
 
     @FXML
-    private DatePicker BestelldatumDp;
+    private DatePicker bestelldatumDp;
 
     @FXML
-    private TextField auftragsIdTextField;
-    
+    private TextField auftragsIdTf;
+
     @FXML
     private TextField kundeTF;
-    
+
     @FXML
     private TextField bestellNrTF;
 
@@ -78,13 +79,13 @@ public class AuftragAnlegenController implements Initializable {
     private String auftragsId = setzeAuftragsId();
 
     @FXML
-    private TableView ArtikelTable;
+    private TableView artikelTable;
 
     @FXML
-    private ToggleButton artikelBearbeitenButton;
+    private ToggleButton artikelBearbeitenBtn;
 
     @FXML
-    private Button LöschenButton;
+    private Button löschenButton;
 
     @FXML
     private TableView<Auftragsposition> artikelTableView;
@@ -105,32 +106,32 @@ public class AuftragAnlegenController implements Initializable {
     private TableColumn<Auftragsposition, Double> gesamtpreisColumn;
 
     @FXML
-    private TextField artikelIdTextField;
+    private TextField artikelIdTf;
 
     @FXML
-    private TextField bezeichnungTextField;
+    private TextField bezeichnungTf;
 
     @FXML
-    private TextField anzahlTextField;
+    private TextField anzahlTf;
 
     @FXML
-    private TextField einzelpreisTextField;
+    private TextField einzelpreisTf;
 
     @FXML
-    private TextField auftragswertTextField;
-    
+    private TextField auftragswertTf;
+
     @FXML
     private Label kundeMeldung;
-    
+
     @FXML
     private Label bestellnrMeldung;
-    
+
     @FXML
     private Label datumMeldung;
 
     private int aId = 0;
-    
-     private final Meldung meldung = new Meldung();
+
+    private final Meldung meldung = new Meldung();
 
     private Stage stage;
 
@@ -141,7 +142,7 @@ public class AuftragAnlegenController implements Initializable {
      */
     public void setStage(Stage stage) {
         this.stage = stage;
-}
+    }
 
     /**
      * Aktualisiert Änderungen in der Spalte "Artikel-ID"
@@ -182,11 +183,11 @@ public class AuftragAnlegenController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         //Wählt das heutige Datum als Standard beim Datepicker
-        BestelldatumDp.setValue(LocalDate.now());
+        bestelldatumDp.setValue(LocalDate.now());
         bestellNrTF.setTextFormatter(new TextFormatter<>(new FilterBestellNummer()));
 
         //Schreibt die Auftrags-ID in das Textfeld
-        auftragsIdTextField.textProperty().set(auftragsId);
+        auftragsIdTf.textProperty().set(auftragsId);
 
         //Legt die Tabellenspalten fest
         artikelIdColumn.setCellValueFactory(new PropertyValueFactory<Auftragsposition, String>("ArtikelID"));
@@ -214,8 +215,8 @@ public class AuftragAnlegenController implements Initializable {
                 -> artikelTableView.getItems().stream().collect(Collectors.summingDouble(Auftragsposition::getGesamtpreis)),
                 artikelTableView.getItems());
 
-        auftragswertTextField.textProperty().bind(Bindings.format("%.2f", total));
-        
+        auftragswertTf.textProperty().bind(Bindings.format("%.2f", total));
+
         speichernBtn.setOnAction((ActionEvent event) -> {
             boolean formIsValid = validateForm();
             Alert meldung = new Alert(Alert.AlertType.INFORMATION, INFORMATION_TEXT, ButtonType.OK);
@@ -266,12 +267,12 @@ public class AuftragAnlegenController implements Initializable {
      * Fügt eine neue Auftragsposition in der Tabelle ein
      */
     public void neueAuftragsposButtonPushed() {
-        Auftragsposition newPosition = new Auftragsposition(artikelIdTextField.getText(),
-                bezeichnungTextField.getText(),
-                Integer.valueOf(anzahlTextField.getText()),
-                Double.valueOf(einzelpreisTextField.getText()),
-                Integer.valueOf(anzahlTextField.getText())
-                * Double.valueOf(einzelpreisTextField.getText()));
+        Auftragsposition newPosition = new Auftragsposition(artikelIdTf.getText(),
+                bezeichnungTf.getText(),
+                Integer.valueOf(anzahlTf.getText()),
+                Double.valueOf(einzelpreisTf.getText()),
+                Integer.valueOf(anzahlTf.getText())
+                * Double.valueOf(einzelpreisTf.getText()));
 
         artikelTableView.getItems().add(newPosition);
     }
@@ -306,8 +307,8 @@ public class AuftragAnlegenController implements Initializable {
                 stage.close();
             }
         }
-}
-    
+    }
+
     private void speichern() {
 
         System.out.println("Hab gespeichert");
@@ -315,39 +316,43 @@ public class AuftragAnlegenController implements Initializable {
 
 //        resetForm();
     }
-    
+
+    // Kontroliert das Formular auf Vollständigkeit und Korrektheit.
     private boolean validateForm() {
 
         boolean validate = true;
-        
 
-        if (BestelldatumDp.getValue().isBefore(LocalDate.now())) {
+        if (bestelldatumDp.getValue().isBefore(LocalDate.now())) {
             datumMeldung.setText(FEHLER_DATUM);
-            BestelldatumDp.requestFocus();
-            
+            bestelldatumDp.requestFocus();
+
             validate = false;
-            
-            
+
         } else {
             datumMeldung.setText("");
-            
-            validate = true;
+
+            if (validate != false) {
+
+                validate = true;
+            }
         }
-        
-         if (kundeTF.getText().isEmpty()) {
+
+        if (kundeTF.getText().isEmpty()) {
 
             kundeMeldung.setText(FEHLER_KEIN_KUNDE);
             kundeTF.requestFocus();
 
             validate = false;
-            
-            } else {
 
-                kundeMeldung.setText("");
+        } else {
+
+            kundeMeldung.setText("");
+
+            if (validate != false) {
 
                 validate = true;
             }
-        
+        }
 
         if (bestellNrTF.getText().isEmpty()) {
 
@@ -367,10 +372,12 @@ public class AuftragAnlegenController implements Initializable {
 
                 bestellnrMeldung.setText("");
 
-                validate = true;
+                if (validate != false) {
+
+                    validate = true;
+                }
             }
         }
-       
 
         return validate;
     }
